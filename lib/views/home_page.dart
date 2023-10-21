@@ -7,9 +7,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
-import 'package:shimmer/shimmer.dart';
 import 'package:weather_app/controller/provider_controller/homepage_provider.dart';
-import 'package:weather_app/model/weather_model.dart';
+import 'package:weather_app/model/news_api_model.dart';
 import 'package:weather_app/views/widgets/slider_container.dart';
 
 class Homepage extends StatefulWidget {
@@ -25,9 +24,9 @@ class _HomepageState extends State<Homepage> {
   NewsModel? model;
   bool isLoad = false;
   Future<void> fetchData(String newsSerch) async {
-    // setState(() {
-    //   isLoad = true;
-    // });
+    setState(() {
+      isLoad = true;
+    });
     var uri = Uri.parse(
         'https://newsapi.org/v2/everything?q=$newsSerch&apiKey=b719771d665245c9b1dc922eb15e9b65');
 
@@ -38,9 +37,9 @@ class _HomepageState extends State<Homepage> {
     jsonData = jsonDecode(response.body);
 
     model = NewsModel.fromJson(jsonData);
-    // setState(() {
-    //   isLoad = false;
-    // });
+    setState(() {
+      isLoad = false;
+    });
   }
 
   @override
@@ -57,29 +56,29 @@ class _HomepageState extends State<Homepage> {
     "Kerala",
   ];
 
-  List tapbarpages = [
-    Container(
-      width: double.infinity,
-      height: double.infinity,
-      child: Center(
-        child: Text("Homepage"),
-      ),
-    ),
-    Container(
-      width: double.infinity,
-      height: double.infinity,
-      child: Center(
-        child: Text("Entertainment"),
-      ),
-    ),
-    Container(
-      width: double.infinity,
-      height: double.infinity,
-      child: Center(
-        child: Text("Sports"),
-      ),
-    )
-  ];
+  // List tapbarpages = [
+  //   Container(
+  //     width: double.infinity,
+  //     height: double.infinity,
+  //     child: Center(
+  //       child: Text("Homepage"),
+  //     ),
+  //   ),
+  //   Container(
+  //     width: double.infinity,
+  //     height: double.infinity,
+  //     child: Center(
+  //       child: Text("Entertainment"),
+  //     ),
+  //   ),
+  //   Container(
+  //     width: double.infinity,
+  //     height: double.infinity,
+  //     child: Center(
+  //       child: Text("Sports"),
+  //     ),
+  //   )
+  // ];
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/model/weather_model.dart';
+import 'package:weather_app/model/news_api_model.dart';
 
 class LatestContainerSlider extends StatelessWidget {
   const LatestContainerSlider(
