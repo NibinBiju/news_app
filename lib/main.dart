@@ -4,7 +4,7 @@ import 'package:weather_app/controller/provider_controller/homepage_provider.dar
 import 'package:weather_app/views/home_page.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.grey,
         ),
         debugShowCheckedModeBanner: false,
-        home: Homepage(),
+        home: const Homepage(),
       ),
     );
   }
