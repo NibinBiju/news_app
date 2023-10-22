@@ -5,13 +5,14 @@ import 'package:weather_app/model/news_api_model.dart';
 import 'package:weather_app/views/explained_page/explain_page.dart';
 import 'package:weather_app/views/widgets/slider_container.dart';
 
-class SportsNewspage extends StatelessWidget {
-  const SportsNewspage(
+class HealthNewsBody extends StatelessWidget {
+  const HealthNewsBody(
       {super.key, required this.model, required this.fetchdata});
 
   final NewsModel? model;
   final VoidCallback fetchdata;
 
+  @override
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -20,7 +21,7 @@ class SportsNewspage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const Text(
-              "Sports News",
+              "Health News",
               style: TextStyle(
                 fontSize: 27,
                 fontWeight: FontWeight.w600,

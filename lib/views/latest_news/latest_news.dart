@@ -45,9 +45,18 @@ class LatestNewsBody extends StatelessWidget {
           itemBuilder: (context, index, realIndex) {
             fetchdata;
             //carosal conatiners
-            return LatestContainerSlider(
-              model: model,
-              index: index + 8,
+            return InkWell(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(
+                  builder: (context) {
+                    return DetailsPage(model: model, index: index + 8);
+                  },
+                ));
+              },
+              child: LatestContainerSlider(
+                model: model,
+                index: index + 8,
+              ),
             );
           },
           options: CarouselOptions(aspectRatio: 5 / 4),

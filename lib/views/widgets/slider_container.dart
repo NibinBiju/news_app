@@ -41,9 +41,17 @@ class LatestContainerSlider extends StatelessWidget {
                   child: Text(
                     model?.articles?[index].title ?? "N/a",
                     style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.white),
+                      fontSize: 22,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white,
+                      shadows: [
+                        Shadow(
+                          color: Colors.black,
+                          blurRadius: 130,
+                          offset: Offset(2.0, 2.0),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
