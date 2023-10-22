@@ -2,9 +2,10 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:weather_app/model/news_api_model.dart';
+import 'package:weather_app/views/explained_page/explain_page.dart';
 import 'package:weather_app/views/widgets/slider_container.dart';
 
-class EnetrtainmentNewsBody extends StatefulWidget {
+class EnetrtainmentNewsBody extends StatelessWidget {
   const EnetrtainmentNewsBody(
       {super.key, required this.model, required this.fetchdata});
 
@@ -12,16 +13,6 @@ class EnetrtainmentNewsBody extends StatefulWidget {
   final VoidCallback fetchdata;
 
   @override
-  State<EnetrtainmentNewsBody> createState() => _EnetrtainmentNewsBodyState();
-}
-
-class _EnetrtainmentNewsBodyState extends State<EnetrtainmentNewsBody> {
-  @override
-  void initState() {
-    widget.fetchdata;
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -53,10 +44,10 @@ class _EnetrtainmentNewsBodyState extends State<EnetrtainmentNewsBody> {
         CarouselSlider.builder(
           itemCount: 5,
           itemBuilder: (context, index, realIndex) {
-            widget.fetchdata;
+            fetchdata;
             //carosal conatiners
             return LatestContainerSlider(
-              model: widget.model,
+              model: model,
               index: index + 8,
             );
           },
@@ -65,34 +56,43 @@ class _EnetrtainmentNewsBodyState extends State<EnetrtainmentNewsBody> {
         Column(
           //news as list
           children: List.generate(
-            widget.model?.articles?.length ?? 0,
+            model?.articles?.length ?? 0,
             (index) {
               return Column(
                 children: [
-                  ListTile(
-                    title: Text(
-                      widget.model?.articles?[index].title ?? "N/a",
-                      style: const TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(
+                        builder: (context) {
+                          return DetailsPage(model: model, index: index);
+                        },
+                      ));
+                    },
+                    child: ListTile(
+                      title: Text(
+                        model?.articles?[index].title ?? "N/a",
+                        style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
-                    ),
-                    subtitle: Text(
-                      widget.model?.articles?[index].description ?? "N/a",
-                      style: const TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.w500,
+                      subtitle: Text(
+                        model?.articles?[index].description ?? "N/a",
+                        style: const TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
                       ),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
-                    ),
-                    trailing: Container(
-                      width: 120,
-                      height: 100,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: NetworkImage(
-                              widget.model?.articles?[index].urlToImage ?? ""),
+                      trailing: Container(
+                        width: 120,
+                        height: 100,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: NetworkImage(
+                                model?.articles?[index].urlToImage ?? ""),
+                          ),
                         ),
                       ),
                     ),
