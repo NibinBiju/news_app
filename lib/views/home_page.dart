@@ -6,8 +6,9 @@ import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'package:weather_app/controller/provider_controller/homepage_provider.dart';
 import 'package:weather_app/model/news_api_model.dart';
-import 'package:weather_app/views/widgets/entertainement_page/entertainment.dart';
-import 'package:weather_app/views/widgets/latest_news/latest_news.dart';
+import 'package:weather_app/views/entertainement_page/entertainment.dart';
+import 'package:weather_app/views/latest_news/latest_news.dart';
+import 'package:weather_app/views/sports/sports_news.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -24,7 +25,7 @@ class _HomepageState extends State<Homepage> {
 
   @override
   void initState() {
-    fetchData('us');
+    fetchData('latest');
     super.initState();
   }
 
@@ -37,7 +38,8 @@ class _HomepageState extends State<Homepage> {
   ];
 
   // List tapbarpages = [
-  //   LatestNewsBody(model: model, fetchdata: () => fetchData("Latest")),
+  //   LatestNewsBody(),
+  //   EnetrtainmentNewsBody(),
   // ];
 
   @override
@@ -57,8 +59,11 @@ class _HomepageState extends State<Homepage> {
               onRefresh: () {
                 if (homeProvider.indexvalue == 0) {
                   return fetchData("latest");
-                } else {
+                }
+                if (homeProvider.indexvalue == 0) {
                   return fetchData("entertainment");
+                } else {
+                  return fetchData('sports');
                 }
               },
               child: CustomScrollView(
@@ -116,8 +121,12 @@ class _HomepageState extends State<Homepage> {
                                                 if (homeProvider.indexvalue ==
                                                     0) {
                                                   fetchData("latest");
-                                                } else {
+                                                }
+                                                if (homeProvider.indexvalue ==
+                                                    1) {
                                                   fetchData("entertainment");
+                                                } else {
+                                                  fetchData('sports');
                                                 }
                                               },
                                               child: Container(
@@ -150,7 +159,7 @@ class _HomepageState extends State<Homepage> {
                                           ))),
                             ),
 
-                            //main body
+                            // main body
                             homeProvider.indexvalue == 0
                                 ? LatestNewsBody(
                                     model: model,
@@ -158,12 +167,18 @@ class _HomepageState extends State<Homepage> {
                                       fetchData("Latest");
                                     },
                                   )
-                                : EnetrtainmentNewsBody(
-                                    fetchdata: () {
-                                      fetchData("entertainment");
-                                    },
-                                    model: model,
-                                  )
+                                : homeProvider.indexvalue == 1
+                                    ? EnetrtainmentNewsBody(
+                                        fetchdata: () {
+                                          fetchData("entertainment");
+                                        },
+                                        model: model,
+                                      )
+                                    : SportsNewspage(
+                                        model: model,
+                                        fetchdata: () {
+                                          fetchData("sports");
+                                        })
                           ],
                         ),
                       ),

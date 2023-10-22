@@ -4,12 +4,23 @@ import 'package:flutter/material.dart';
 import 'package:weather_app/model/news_api_model.dart';
 import 'package:weather_app/views/widgets/slider_container.dart';
 
-class EnetrtainmentNewsBody extends StatelessWidget {
+class EnetrtainmentNewsBody extends StatefulWidget {
   const EnetrtainmentNewsBody(
       {super.key, required this.model, required this.fetchdata});
 
   final NewsModel? model;
   final VoidCallback fetchdata;
+
+  @override
+  State<EnetrtainmentNewsBody> createState() => _EnetrtainmentNewsBodyState();
+}
+
+class _EnetrtainmentNewsBodyState extends State<EnetrtainmentNewsBody> {
+  @override
+  void initState() {
+    widget.fetchdata;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,10 +53,10 @@ class EnetrtainmentNewsBody extends StatelessWidget {
         CarouselSlider.builder(
           itemCount: 5,
           itemBuilder: (context, index, realIndex) {
-            fetchdata;
+            widget.fetchdata;
             //carosal conatiners
             return LatestContainerSlider(
-              model: model,
+              model: widget.model,
               index: index + 8,
             );
           },
@@ -54,20 +65,20 @@ class EnetrtainmentNewsBody extends StatelessWidget {
         Column(
           //news as list
           children: List.generate(
-            model?.articles?.length ?? 0,
+            widget.model?.articles?.length ?? 0,
             (index) {
               return Column(
                 children: [
                   ListTile(
                     title: Text(
-                      model?.articles?[index].title ?? "N/a",
+                      widget.model?.articles?[index].title ?? "N/a",
                       style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
                     subtitle: Text(
-                      model?.articles?[index].description ?? "N/a",
+                      widget.model?.articles?[index].description ?? "N/a",
                       style: const TextStyle(
                         fontSize: 13,
                         fontWeight: FontWeight.w500,
@@ -81,7 +92,7 @@ class EnetrtainmentNewsBody extends StatelessWidget {
                       decoration: BoxDecoration(
                         image: DecorationImage(
                           image: NetworkImage(
-                              model?.articles?[index].urlToImage ?? ""),
+                              widget.model?.articles?[index].urlToImage ?? ""),
                         ),
                       ),
                     ),
