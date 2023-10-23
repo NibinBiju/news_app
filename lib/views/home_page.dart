@@ -162,9 +162,9 @@ class _HomepageState extends State<Homepage> {
 
                       // main body
                       isLoad
-                          ? Container(
+                          ? SizedBox(
                               width: double.infinity,
-                              height: 500,
+                              height: 550,
                               child: Center(child: CircularProgressIndicator()),
                             )
                           : homeProvider.indexvalue == 0

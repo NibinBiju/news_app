@@ -13,7 +13,7 @@ class LatestContainerSlider extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        padding: EdgeInsets.only(top: 90, left: 5),
+        padding: EdgeInsets.only(top: 90, left: 5, right: 5),
         width: 350,
         height: 350,
         decoration: BoxDecoration(

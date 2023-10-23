@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:weather_app/model/news_api_model.dart';
 import 'package:weather_app/views/explained_page/explain_page.dart';
+import 'package:weather_app/views/widgets/news_tile.dart';
 import 'package:weather_app/views/widgets/slider_container.dart';
 
 class HealthNewsBody extends StatelessWidget {
@@ -56,7 +57,7 @@ class HealthNewsBody extends StatelessWidget {
               },
               child: LatestContainerSlider(
                 model: model,
-                index: index + 8,
+                index: index + 17,
               ),
             );
           },
@@ -67,51 +68,7 @@ class HealthNewsBody extends StatelessWidget {
           children: List.generate(
             model?.articles?.length ?? 0,
             (index) {
-              return Column(
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(context, MaterialPageRoute(
-                        builder: (context) {
-                          return DetailsPage(model: model, index: index);
-                        },
-                      ));
-                    },
-                    child: ListTile(
-                      title: Text(
-                        model?.articles?[index].title ?? "N/a",
-                        style: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      subtitle: Text(
-                        model?.articles?[index].description ?? "N/a",
-                        style: const TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.w500,
-                        ),
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
-                      ),
-                      trailing: Container(
-                        width: 120,
-                        height: 100,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: NetworkImage(
-                                model?.articles?[index].urlToImage ?? ""),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const Divider(
-                    height: 8,
-                    thickness: 2,
-                  ),
-                ],
-              );
+              return NewsTile(model: model, index: index);
             },
           ),
         ),
