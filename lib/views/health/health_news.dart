@@ -51,7 +51,7 @@ class HealthNewsBody extends StatelessWidget {
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(
                   builder: (context) {
-                    return DetailsPage(model: model, index: index + 8);
+                    return DetailsPage(model: model, index: index + 17);
                   },
                 ));
               },

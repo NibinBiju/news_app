@@ -13,7 +13,7 @@ class DetailsPage extends StatelessWidget {
         slivers: [
           //appbar
           SliverAppBar(
-            backgroundColor: Colors.grey.shade400,
+            backgroundColor: Colors.grey.shade300,
             title: const Text(
               'Article',
               style: TextStyle(
@@ -31,8 +31,10 @@ class DetailsPage extends StatelessWidget {
               child: Column(
                 children: [
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
+                        // width: 100,
                         padding: const EdgeInsets.all(8),
                         color: const Color.fromARGB(255, 72, 27, 80),
                         child: Text(
@@ -44,6 +46,12 @@ class DetailsPage extends StatelessWidget {
                           ),
                         ),
                       ),
+                      IconButton(
+                          onPressed: () {},
+                          icon: const Icon(
+                            Icons.bookmark_border,
+                            size: 33,
+                          ))
                     ],
                   ),
                   SizedBox(

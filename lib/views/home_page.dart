@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_typing_uninitialized_variables, avoid_print
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
@@ -68,12 +68,14 @@ class _HomepageState extends State<Homepage> {
         child: CustomScrollView(
           slivers: [
             //appbar
-            SliverAppBar(
+            SliverAppBar.medium(
+              stretch: true,
               backgroundColor: Colors.transparent,
               elevation: 0,
-              title: Text("News"),
+              title: const Text("News"),
               actions: [
-                IconButton(onPressed: () {}, icon: Icon(Icons.notifications))
+                IconButton(
+                    onPressed: () {}, icon: const Icon(Icons.notifications))
               ],
             ),
 
@@ -84,25 +86,25 @@ class _HomepageState extends State<Homepage> {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      //text field
-                      TextField(
-                        style: TextStyle(
-                          fontSize: 23,
-                        ),
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(18),
-                          ),
-                          hintText: "Search",
-                          suffixIcon: IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.search_rounded,
-                              size: 29,
-                            ),
-                          ),
-                        ),
-                      ),
+                      //textfield for search
+                      // TextField(
+                      //   style: const TextStyle(
+                      //     fontSize: 23,
+                      //   ),
+                      //   decoration: InputDecoration(
+                      //     border: OutlineInputBorder(
+                      //       borderRadius: BorderRadius.circular(18),
+                      //     ),
+                      //     hintText: "Search",
+                      //     suffixIcon: IconButton(
+                      //       onPressed: () {},
+                      //       icon: const Icon(
+                      //         Icons.search_rounded,
+                      //         size: 29,
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
 
                       //tap bar
                       SingleChildScrollView(
@@ -134,12 +136,12 @@ class _HomepageState extends State<Homepage> {
                                           }
                                         },
                                         child: Container(
-                                          padding: EdgeInsets.all(8),
+                                          padding: const EdgeInsets.all(8),
                                           decoration: BoxDecoration(
                                               color: homeProvider.indexvalue ==
                                                       index
                                                   ? Colors.black
-                                                  : Colors.white,
+                                                  : Colors.grey.shade300,
                                               borderRadius:
                                                   BorderRadius.circular(19)),
                                           child: Center(
@@ -162,7 +164,7 @@ class _HomepageState extends State<Homepage> {
 
                       // main body
                       isLoad
-                          ? SizedBox(
+                          ? const SizedBox(
                               width: double.infinity,
                               height: 550,
                               child: Center(child: CircularProgressIndicator()),

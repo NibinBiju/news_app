@@ -13,7 +13,7 @@ class LatestContainerSlider extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        padding: EdgeInsets.only(top: 90, left: 5, right: 5),
+        padding: const EdgeInsets.only(top: 90, left: 5, right: 5),
         width: 350,
         height: 350,
         decoration: BoxDecoration(
@@ -28,7 +28,7 @@ class LatestContainerSlider extends StatelessWidget {
               children: [
                 Text(
                   model?.articles?[index].source?.name ?? "N/a",
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontWeight: FontWeight.w600, color: Colors.white),
                 ),
               ],
@@ -40,7 +40,7 @@ class LatestContainerSlider extends StatelessWidget {
                   height: 140,
                   child: Text(
                     model?.articles?[index].title ?? "N/a",
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.w600,
                       color: Colors.white,
@@ -60,7 +60,7 @@ class LatestContainerSlider extends StatelessWidget {
               children: [
                 Text(
                   model?.articles?[index].author ?? "N/a",
-                  style: TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.white),
                 )
               ],
             )

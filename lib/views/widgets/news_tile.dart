@@ -25,7 +25,7 @@ class NewsTile extends StatelessWidget {
               );
             }));
           },
-          child: Container(
+          child: SizedBox(
             width: double.infinity,
             height: 170,
             child: Row(

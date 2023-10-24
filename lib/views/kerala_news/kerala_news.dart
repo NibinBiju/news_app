@@ -22,7 +22,7 @@ class KeralaNewsBody extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const Text(
-              "Latest form Kerala",
+              "Latest from Kerala",
               style: TextStyle(
                 fontSize: 27,
                 fontWeight: FontWeight.w600,
