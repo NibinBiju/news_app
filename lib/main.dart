@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app/controller/provider_controller/bottomnavi_controller.dart';
 import 'package:weather_app/controller/provider_controller/homepage_provider.dart';
+import 'package:weather_app/controller/provider_controller/search_page.dart';
 import 'package:weather_app/views/bottom_navigation.dart';
 
 void main() {
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => BottomNavi(),
         ),
+        ChangeNotifierProvider(create: (context) => SearchPageNotifier())
       ],
       child: MaterialApp(
           theme: ThemeData(

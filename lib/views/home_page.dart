@@ -83,10 +83,7 @@ class _HomepageState extends State<Homepage> {
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return Searchpage(
-                              model: homeProvider.model,
-                              index: homeProvider.indexvalue,
-                            );
+                            return Searchpage();
                           },
                         ),
                       );
@@ -195,7 +192,7 @@ class _HomepageState extends State<Homepage> {
                           ? const SizedBox(
                               width: double.infinity,
                               height: 550,
-                              child: Center(child: CircularProgressIndicator()),
+                              child: CircularProgressIndicator(),
                             )
                           : NewsMainBody(
                               model: homeProvider.model,
