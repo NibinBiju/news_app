@@ -11,7 +11,7 @@ class LatestContainerSlider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(4.0),
       child: Container(
         padding: const EdgeInsets.only(top: 90, left: 5, right: 5),
         width: 350,
@@ -29,7 +29,16 @@ class LatestContainerSlider extends StatelessWidget {
                 Text(
                   model?.articles?[index].source?.name ?? "N/a",
                   style: const TextStyle(
-                      fontWeight: FontWeight.w600, color: Colors.white),
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                    shadows: [
+                      Shadow(
+                        color: Colors.black,
+                        blurRadius: 130,
+                        offset: Offset(2.0, 2.0),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -60,7 +69,16 @@ class LatestContainerSlider extends StatelessWidget {
               children: [
                 Text(
                   model?.articles?[index].author ?? "N/a",
-                  style: const TextStyle(color: Colors.white),
+                  style: const TextStyle(
+                    color: Colors.white,
+                    shadows: [
+                      Shadow(
+                        color: Colors.black,
+                        blurRadius: 130,
+                        offset: Offset(2.0, 2.0),
+                      ),
+                    ],
+                  ),
                 )
               ],
             )

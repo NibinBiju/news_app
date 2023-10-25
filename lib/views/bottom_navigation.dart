@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:weather_app/controller/provider_controller/homepage_provider.dart';
+import 'package:weather_app/controller/provider_controller/bottomnavi_controller.dart';
 import 'package:weather_app/views/home_page.dart';
 import 'package:weather_app/views/save_article/save_article.dart';
 
@@ -14,7 +14,7 @@ class BottomNavigationPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var homeprovider = Provider.of<HomePageProvider>(context);
+    var homeprovider = Provider.of<BottomNavi>(context);
     return Scaffold(
       body: mypages[homeprovider.bottomIndex],
       bottomNavigationBar: BottomNavigationBar(

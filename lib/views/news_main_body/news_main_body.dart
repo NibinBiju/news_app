@@ -6,40 +6,50 @@ import 'package:weather_app/views/explained_page/explain_page.dart';
 import 'package:weather_app/views/widgets/news_tile.dart';
 import 'package:weather_app/views/widgets/slider_container.dart';
 
-class LatestNewsBody extends StatelessWidget {
-  const LatestNewsBody(
-      {super.key, required this.model, required this.fetchdata});
+class NewsMainBody extends StatelessWidget {
+  const NewsMainBody(
+      {super.key,
+      required this.model,
+      required this.fetchdata,
+      required this.title});
 
   final NewsModel? model;
   final VoidCallback fetchdata;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Text(
-              "Latest News",
-              style: TextStyle(
-                fontSize: 27,
-                fontWeight: FontWeight.w600,
-                color: Colors.black,
-              ),
-            ),
-
-            //see all
-            CupertinoButton(
-                child: const Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text("See All"),
-                    Icon(Icons.arrow_forward),
-                  ],
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 27,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black,
                 ),
-                onPressed: () {})
-          ],
+              ),
+
+              //see all
+              CupertinoButton(
+                  child: const Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text("See All"),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Icon(Icons.arrow_forward),
+                    ],
+                  ),
+                  onPressed: () {})
+            ],
+          ),
         ),
         CarouselSlider.builder(
           itemCount: 5,
@@ -60,7 +70,12 @@ class LatestNewsBody extends StatelessWidget {
               ),
             );
           },
-          options: CarouselOptions(aspectRatio: 5 / 4),
+          options: CarouselOptions(
+            aspectRatio: 5 / 4,
+            animateToClosest: true,
+            // autoPlay: true,
+            enlargeCenterPage: true,
+          ),
         ),
         Column(
           //news as list

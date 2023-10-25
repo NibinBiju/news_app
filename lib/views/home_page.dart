@@ -1,16 +1,10 @@
 // ignore_for_file: prefer_typing_uninitialized_variables, avoid_print
 
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'package:weather_app/controller/provider_controller/homepage_provider.dart';
-import 'package:weather_app/model/news_api_model.dart';
-import 'package:weather_app/views/health/health_news.dart';
-import 'package:weather_app/views/entertainement_page/entertainment.dart';
-import 'package:weather_app/views/kerala_news/kerala_news.dart';
-import 'package:weather_app/views/latest_news/latest_news.dart';
-import 'package:weather_app/views/sports/sports_news.dart';
+import 'package:weather_app/views/news_main_body/news_main_body.dart';
+import 'package:weather_app/views/search_page/search_page.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -20,23 +14,23 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-  var jsonData;
   String nvalue = '';
-  NewsModel? model;
-  bool isLoad = false;
 
   @override
   void initState() {
-    fetchData('latest');
+    Provider.of<HomePageProvider>(context, listen: false)
+        .fetchData(tapbarlist[0]);
     super.initState();
   }
 
-  List tapbarlist = [
+  List<String> tapbarlist = [
+    "All",
     'Latest news',
     'Entertaiment',
     'Sports',
     "Health",
     "Kerala",
+    "Trending",
   ];
 
   // List tapbarpages = [
@@ -50,32 +44,62 @@ class _HomepageState extends State<Homepage> {
     return Scaffold(
       body: RefreshIndicator(
         onRefresh: () {
-          if (homeProvider.indexvalue == 0) {
-            return fetchData("latest");
-          }
-          if (homeProvider.indexvalue == 1) {
-            return fetchData("entertainment");
-          }
-          if (homeProvider.indexvalue == 2) {
-            return fetchData('sports');
-          }
-          if (homeProvider.indexvalue == 3) {
-            return fetchData('health');
-          } else {
-            return fetchData('kerala');
-          }
+          // if (homeProvider.indexvalue == 0) {
+          //   return homeProvider.fetchData("trending");
+          // }
+          // if (homeProvider.indexvalue == 1) {
+          //   return homeProvider.fetchData("entertainment");
+          // }
+          // if (homeProvider.indexvalue == 2) {
+          //   return homeProvider.fetchData('sports');
+          // }
+          // if (homeProvider.indexvalue == 3) {
+          //   return homeProvider.fetchData('health');
+          // } else {
+          //   return homeProvider.fetchData('kerala');
+          // }
+          return homeProvider.fetchData(tapbarlist[homeProvider.indexvalue]);
         },
         child: CustomScrollView(
           slivers: [
             //appbar
             SliverAppBar.medium(
+              titleTextStyle: const TextStyle(
+                fontWeight: FontWeight.w600,
+                color: Colors.black,
+                fontSize: 32,
+              ),
               stretch: true,
-              backgroundColor: Colors.transparent,
+              centerTitle: true,
+              backgroundColor: Colors.grey.shade100,
               elevation: 0,
               title: const Text("News"),
               actions: [
                 IconButton(
-                    onPressed: () {}, icon: const Icon(Icons.notifications))
+                  onPressed: () {},
+                  icon: IconButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return Searchpage(
+                              model: homeProvider.model,
+                              index: homeProvider.indexvalue,
+                            );
+                          },
+                        ),
+                      );
+                    },
+                    icon: const Icon(
+                      Icons.search,
+                      size: 32,
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  width: 15,
+                ),
               ],
             ),
 
@@ -86,7 +110,7 @@ class _HomepageState extends State<Homepage> {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      //textfield for search
+                      // textfield for search
                       // TextField(
                       //   style: const TextStyle(
                       //     fontSize: 23,
@@ -118,22 +142,26 @@ class _HomepageState extends State<Homepage> {
                                         onTap: () {
                                           homeProvider.appbarIndex(
                                               index: index);
-                                          if (homeProvider.indexvalue == 0) {
-                                            fetchData("latest");
-                                          }
-                                          if (homeProvider.indexvalue == 1) {
-                                            fetchData("entertainment");
-                                            print(homeProvider.indexvalue);
-                                          }
-                                          if (homeProvider.indexvalue == 2) {
-                                            fetchData('sports');
-                                          }
-                                          if (homeProvider.indexvalue == 3) {
-                                            fetchData('health');
-                                          }
-                                          if (homeProvider.indexvalue == 4) {
-                                            fetchData('kerala');
-                                          }
+                                          // if (homeProvider.indexvalue == 0) {
+                                          //   homeProvider.fetchData("latest");
+                                          // }
+                                          // if (homeProvider.indexvalue == 1) {
+                                          //   homeProvider
+                                          //       .fetchData("entertainment");
+                                          //   print(homeProvider.indexvalue);
+                                          // }
+                                          // if (homeProvider.indexvalue == 2) {
+                                          //   homeProvider.fetchData('sports');
+                                          // }
+                                          // if (homeProvider.indexvalue == 3) {
+                                          //   homeProvider
+                                          //       .fetchData('health&fitness');
+                                          // }
+                                          // if (homeProvider.indexvalue == 4) {
+                                          //   homeProvider.fetchData('kerala');
+                                          // }
+                                          homeProvider.fetchData(tapbarlist[
+                                              homeProvider.indexvalue]);
                                         },
                                         child: Container(
                                           padding: const EdgeInsets.all(8),
@@ -163,43 +191,45 @@ class _HomepageState extends State<Homepage> {
                       ),
 
                       // main body
-                      isLoad
+                      homeProvider.isLoad
                           ? const SizedBox(
                               width: double.infinity,
                               height: 550,
                               child: Center(child: CircularProgressIndicator()),
                             )
-                          : homeProvider.indexvalue == 0
-                              ? LatestNewsBody(
-                                  model: model,
-                                  fetchdata: () {
-                                    fetchData("Latest");
-                                  },
-                                )
-                              : homeProvider.indexvalue == 1
-                                  ? EnetrtainmentNewsBody(
-                                      fetchdata: () {
-                                        fetchData("entertainment");
-                                      },
-                                      model: model,
-                                    )
-                                  : homeProvider.indexvalue == 2
-                                      ? SportsNewspage(
-                                          model: model,
-                                          fetchdata: () {
-                                            fetchData("sports");
-                                          })
-                                      : homeProvider.indexvalue == 3
-                                          ? HealthNewsBody(
-                                              model: model,
-                                              fetchdata: () {
-                                                fetchData('esports');
-                                              })
-                                          : KeralaNewsBody(
-                                              model: model,
-                                              fetchdata: () {
-                                                fetchData('kerala');
-                                              })
+                          : NewsMainBody(
+                              model: homeProvider.model,
+                              fetchdata: () {
+                                homeProvider.fetchData("Latest");
+                              },
+                              title: tapbarlist[homeProvider.indexvalue],
+                            )
+                      // : homeProvider.indexvalue == 1
+                      //     ? EnetrtainmentNewsBody(
+                      //         fetchdata: () {
+                      //           homeProvider.fetchData("entertainment");
+                      //         },
+                      //         model: homeProvider.model,
+                      //       )
+                      //     : homeProvider.indexvalue == 2
+                      //         ? SportsNewspage(
+                      //             model: homeProvider.model,
+                      //             fetchdata: () {
+                      //               homeProvider.fetchData("sports");
+                      //             })
+                      //         : homeProvider.indexvalue == 3
+                      //             ? HealthNewsBody(
+                      //                 model: homeProvider.model,
+                      //                 fetchdata: () {
+                      //                   homeProvider
+                      //                       .fetchData('esports');
+                      //                 })
+                      //             : KeralaNewsBody(
+                      //                 model: homeProvider.model,
+                      //                 fetchdata: () {
+                      //                   homeProvider
+                      //                       .fetchData('kerala');
+                      //                 })
                     ],
                   ),
                 ),
@@ -209,24 +239,5 @@ class _HomepageState extends State<Homepage> {
         ),
       ),
     );
-  }
-
-  Future<void> fetchData(String newsSerch) async {
-    setState(() {
-      isLoad = true;
-    });
-    var uri = Uri.parse(
-        'https://newsapi.org/v2/everything?q=$newsSerch&apiKey=b719771d665245c9b1dc922eb15e9b65');
-
-    var response = await http.get(uri);
-    print(response.statusCode);
-    print(response.body);
-
-    jsonData = jsonDecode(response.body);
-
-    model = NewsModel.fromJson(jsonData);
-    setState(() {
-      isLoad = false;
-    });
   }
 }

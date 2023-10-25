@@ -87,11 +87,18 @@ class NewsTile extends StatelessWidget {
                               fontWeight: FontWeight.w600,
                               color: Colors.black,
                             ),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
                           ),
                         ),
-                        const Icon(
-                          Icons.bookmark_border_rounded,
-                          size: 24,
+                        InkWell(
+                          onTap: () {
+                            print("added to save");
+                          },
+                          child: const Icon(
+                            Icons.bookmark_border_rounded,
+                            size: 24,
+                          ),
                         )
                       ],
                     )
