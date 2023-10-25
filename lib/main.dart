@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => SearchPageNotifier())
       ],
       child: MaterialApp(
+          title: "News App",
           theme: ThemeData(
             primarySwatch: Colors.grey,
           ),

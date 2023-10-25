@@ -191,8 +191,8 @@ class _HomepageState extends State<Homepage> {
                       homeProvider.isLoad
                           ? const SizedBox(
                               width: double.infinity,
-                              height: 550,
-                              child: CircularProgressIndicator(),
+                              height: 300,
+                              child: Center(child: CircularProgressIndicator()),
                             )
                           : NewsMainBody(
                               model: homeProvider.model,

@@ -29,6 +29,7 @@ class _SearchpageState extends State<Searchpage> {
         toolbarHeight: 100,
         backgroundColor: Colors.transparent,
         title: TextField(
+          autofocus: false,
           autocorrect: true,
           controller: _searchController,
           style: const TextStyle(
@@ -52,30 +53,34 @@ class _SearchpageState extends State<Searchpage> {
           onChanged: (value) {
             searchProvider.searchfetchData(value);
           },
+          onSubmitted: (value) {
+            searchProvider.searchfetchData(value);
+          },
         ),
       ),
       body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            searchProvider.isLoad
-                ? const SizedBox(
-                    width: double.infinity,
-                    height: 400,
-                    child: Center(child: CircularProgressIndicator()),
-                  )
-                : Column(
-                    children: List.generate(
-                      searchProvider.model?.articles?.length ?? 0,
-                      (index) {
-                        return NewsTile(
-                          model: searchProvider.model,
-                          index: index,
-                        );
-                      },
-                    ),
-                  )
-          ],
+        child: Center(
+          child: Column(
+            children: [
+              searchProvider.isLoad
+                  ? const SizedBox(
+                      width: double.infinity,
+                      height: 300,
+                      child: Center(child: CircularProgressIndicator()),
+                    )
+                  : Column(
+                      children: List.generate(
+                        searchProvider.model?.articles?.length ?? 0,
+                        (index) {
+                          return NewsTile(
+                            model: searchProvider.model,
+                            index: index,
+                          );
+                        },
+                      ),
+                    )
+            ],
+          ),
         ),
       ),
     );
