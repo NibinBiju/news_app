@@ -60,13 +60,13 @@ class NewsMainBody extends StatelessWidget {
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(
                   builder: (context) {
-                    return DetailsPage(model: model, index: index + 8);
+                    return DetailsPage(model: model, index: index);
                   },
                 ));
               },
               child: LatestContainerSlider(
                 model: model,
-                index: index + 8,
+                index: index,
               ),
             );
           },
