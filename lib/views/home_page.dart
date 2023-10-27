@@ -33,31 +33,12 @@ class _HomepageState extends State<Homepage> {
     "Trending",
   ];
 
-  // List tapbarpages = [
-  //   LatestNewsBody(),
-  //   EnetrtainmentNewsBody(),
-  // ];
-
   @override
   Widget build(BuildContext context) {
     var homeProvider = Provider.of<HomePageProvider>(context);
     return Scaffold(
       body: RefreshIndicator(
         onRefresh: () {
-          // if (homeProvider.indexvalue == 0) {
-          //   return homeProvider.fetchData("trending");
-          // }
-          // if (homeProvider.indexvalue == 1) {
-          //   return homeProvider.fetchData("entertainment");
-          // }
-          // if (homeProvider.indexvalue == 2) {
-          //   return homeProvider.fetchData('sports');
-          // }
-          // if (homeProvider.indexvalue == 3) {
-          //   return homeProvider.fetchData('health');
-          // } else {
-          //   return homeProvider.fetchData('kerala');
-          // }
           return homeProvider.fetchData(tapbarlist[homeProvider.indexvalue]);
         },
         child: CustomScrollView(
@@ -83,7 +64,7 @@ class _HomepageState extends State<Homepage> {
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return Searchpage();
+                            return const Searchpage();
                           },
                         ),
                       );
@@ -107,26 +88,6 @@ class _HomepageState extends State<Homepage> {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      // textfield for search
-                      // TextField(
-                      //   style: const TextStyle(
-                      //     fontSize: 23,
-                      //   ),
-                      //   decoration: InputDecoration(
-                      //     border: OutlineInputBorder(
-                      //       borderRadius: BorderRadius.circular(18),
-                      //     ),
-                      //     hintText: "Search",
-                      //     suffixIcon: IconButton(
-                      //       onPressed: () {},
-                      //       icon: const Icon(
-                      //         Icons.search_rounded,
-                      //         size: 29,
-                      //       ),
-                      //     ),
-                      //   ),
-                      // ),
-
                       //tap bar
                       SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
@@ -139,24 +100,7 @@ class _HomepageState extends State<Homepage> {
                                         onTap: () {
                                           homeProvider.appbarIndex(
                                               index: index);
-                                          // if (homeProvider.indexvalue == 0) {
-                                          //   homeProvider.fetchData("latest");
-                                          // }
-                                          // if (homeProvider.indexvalue == 1) {
-                                          //   homeProvider
-                                          //       .fetchData("entertainment");
-                                          //   print(homeProvider.indexvalue);
-                                          // }
-                                          // if (homeProvider.indexvalue == 2) {
-                                          //   homeProvider.fetchData('sports');
-                                          // }
-                                          // if (homeProvider.indexvalue == 3) {
-                                          //   homeProvider
-                                          //       .fetchData('health&fitness');
-                                          // }
-                                          // if (homeProvider.indexvalue == 4) {
-                                          //   homeProvider.fetchData('kerala');
-                                          // }
+
                                           homeProvider.fetchData(tapbarlist[
                                               homeProvider.indexvalue]);
                                         },
@@ -201,32 +145,6 @@ class _HomepageState extends State<Homepage> {
                               },
                               title: tapbarlist[homeProvider.indexvalue],
                             )
-                      // : homeProvider.indexvalue == 1
-                      //     ? EnetrtainmentNewsBody(
-                      //         fetchdata: () {
-                      //           homeProvider.fetchData("entertainment");
-                      //         },
-                      //         model: homeProvider.model,
-                      //       )
-                      //     : homeProvider.indexvalue == 2
-                      //         ? SportsNewspage(
-                      //             model: homeProvider.model,
-                      //             fetchdata: () {
-                      //               homeProvider.fetchData("sports");
-                      //             })
-                      //         : homeProvider.indexvalue == 3
-                      //             ? HealthNewsBody(
-                      //                 model: homeProvider.model,
-                      //                 fetchdata: () {
-                      //                   homeProvider
-                      //                       .fetchData('esports');
-                      //                 })
-                      //             : KeralaNewsBody(
-                      //                 model: homeProvider.model,
-                      //                 fetchdata: () {
-                      //                   homeProvider
-                      //                       .fetchData('kerala');
-                      //                 })
                     ],
                   ),
                 ),

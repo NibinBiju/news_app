@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:weather_app/controller/provider_controller/save_provider.dart';
+import 'package:weather_app/model/database_model.dart';
 import 'package:weather_app/model/news_api_model.dart';
 import 'package:weather_app/views/explained_page/explain_page.dart';
 
@@ -14,6 +17,7 @@ class NewsTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var saveprovider = Provider.of<SaveProvider>(context);
     return Column(
       children: [
         GestureDetector(
@@ -93,9 +97,20 @@ class NewsTile extends StatelessWidget {
                         ),
                         InkWell(
                           onTap: () {
-                            print("added to save");
+                            saveprovider.addToSave(
+                              DatabaseModel(
+                                image: model?.articles?[index].urlToImage ?? "",
+                                title: model?.articles?[index].title ?? "",
+                                source:
+                                    model?.articles?[index].source?.name ?? "",
+                                author: model?.articles?[index].author ?? "",
+                                decription:
+                                    model?.articles?[index].description ?? "",
+                                index: index,
+                              ),
+                            );
                           },
-                          child: const Icon(
+                          child: Icon(
                             Icons.bookmark_border_rounded,
                             size: 24,
                           ),
