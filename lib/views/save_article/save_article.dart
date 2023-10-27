@@ -1,10 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:weather_app/controller/hive_controller.dart';
+import 'package:weather_app/controller/news_controller.dart';
 import 'package:weather_app/controller/provider_controller/save_provider.dart';
 import 'package:weather_app/views/widgets/news_tile.dart';
 
-class SaveArticle extends StatelessWidget {
+class SaveArticle extends StatefulWidget {
   const SaveArticle({super.key});
+
+  @override
+  State<SaveArticle> createState() => _SaveArticleState();
+}
+
+class _SaveArticleState extends State<SaveArticle> {
+  // final DbHive _dbHive = DbHive();
+  // @override
+  // void initState() {
+  //   _dbHive.getData();
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +26,7 @@ class SaveArticle extends StatelessWidget {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          SliverAppBar.large(
+          const SliverAppBar.large(
             backgroundColor: Colors.transparent,
             title: Text(
               "Saved",
@@ -31,7 +45,7 @@ class SaveArticle extends StatelessWidget {
                       children: [
                         Column(
                           children: List.generate(
-                            saveProvider.savedArticles.length,
+                            NewsDbController.savedArticles.length,
                             (index) {
                               return GestureDetector(
                                 // onTap: () {
@@ -57,8 +71,10 @@ class SaveArticle extends StatelessWidget {
                                           height: 140,
                                           decoration: BoxDecoration(
                                             image: DecorationImage(
-                                              image: NetworkImage(saveProvider
-                                                  .savedArticles[index].image),
+                                              image: NetworkImage(
+                                                  NewsDbController
+                                                      .savedArticles[index]
+                                                      .image),
                                               fit: BoxFit.cover,
                                             ),
                                           ),
@@ -73,7 +89,7 @@ class SaveArticle extends StatelessWidget {
                                           Container(
                                             padding: const EdgeInsets.all(5),
                                             child: Text(
-                                              saveProvider
+                                              NewsDbController
                                                   .savedArticles[index].source,
                                               style: const TextStyle(
                                                 fontSize: 17,
@@ -88,7 +104,7 @@ class SaveArticle extends StatelessWidget {
                                             height: 80,
                                             padding: const EdgeInsets.all(6),
                                             child: Text(
-                                              saveProvider
+                                              NewsDbController
                                                   .savedArticles[index].title,
                                               style: const TextStyle(
                                                 fontSize: 19,
@@ -106,7 +122,7 @@ class SaveArticle extends StatelessWidget {
                                                 padding:
                                                     const EdgeInsets.all(5),
                                                 child: Text(
-                                                  saveProvider
+                                                  NewsDbController
                                                       .savedArticles[index]
                                                       .author,
                                                   style: const TextStyle(
@@ -119,6 +135,13 @@ class SaveArticle extends StatelessWidget {
                                                   maxLines: 2,
                                                 ),
                                               ),
+                                              InkWell(
+                                                onTap: () {
+                                                  saveProvider.remove(index);
+                                                },
+                                                child:
+                                                    const Icon(Icons.bookmark),
+                                              )
                                             ],
                                           )
                                         ],

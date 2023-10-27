@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:weather_app/controller/news_controller.dart';
+import 'package:weather_app/controller/provider_controller/save_provider.dart';
+import 'package:weather_app/model/database_model.dart';
 import 'package:weather_app/model/news_api_model.dart';
 
 class DetailsPage extends StatelessWidget {
@@ -8,6 +12,7 @@ class DetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var saveProvider = Provider.of<SaveProvider>(context);
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -46,12 +51,37 @@ class DetailsPage extends StatelessWidget {
                           ),
                         ),
                       ),
-                      IconButton(
-                          onPressed: () {},
-                          icon: const Icon(
-                            Icons.bookmark_border,
-                            size: 33,
-                          ))
+                      NewsDbController.savedArticles.any((element) =>
+                              element.title == model?.articles?[index].title)
+                          ? IconButton(
+                              onPressed: () {},
+                              icon: const Icon(
+                                Icons.bookmark,
+                                size: 33,
+                              ))
+                          : IconButton(
+                              onPressed: () {
+                                saveProvider.addToSave(
+                                  DatabaseModel(
+                                    image: model?.articles?[index].urlToImage ??
+                                        "",
+                                    title: model?.articles?[index].title ?? "",
+                                    source:
+                                        model?.articles?[index].source?.name ??
+                                            "",
+                                    author:
+                                        model?.articles?[index].author ?? "",
+                                    decription:
+                                        model?.articles?[index].description ??
+                                            "",
+                                    index: index,
+                                  ),
+                                );
+                              },
+                              icon: const Icon(
+                                Icons.bookmark_border,
+                                size: 33,
+                              ))
                     ],
                   ),
                   SizedBox(

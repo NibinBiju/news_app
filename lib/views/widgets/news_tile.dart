@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:weather_app/controller/news_controller.dart';
 import 'package:weather_app/controller/provider_controller/save_provider.dart';
 import 'package:weather_app/model/database_model.dart';
 import 'package:weather_app/model/news_api_model.dart';
@@ -95,26 +96,38 @@ class NewsTile extends StatelessWidget {
                             maxLines: 2,
                           ),
                         ),
-                        InkWell(
-                          onTap: () {
-                            saveprovider.addToSave(
-                              DatabaseModel(
-                                image: model?.articles?[index].urlToImage ?? "",
-                                title: model?.articles?[index].title ?? "",
-                                source:
-                                    model?.articles?[index].source?.name ?? "",
-                                author: model?.articles?[index].author ?? "",
-                                decription:
-                                    model?.articles?[index].description ?? "",
-                                index: index,
-                              ),
-                            );
-                          },
-                          child: Icon(
-                            Icons.bookmark_border_rounded,
-                            size: 24,
-                          ),
-                        )
+                        NewsDbController.savedArticles.any((element) =>
+                                element.title == model?.articles?[index].title)
+                            ? Icon(
+                                Icons.bookmark,
+                                size: 24,
+                              )
+                            : InkWell(
+                                onTap: () {
+                                  saveprovider.addToSave(
+                                    DatabaseModel(
+                                      image:
+                                          model?.articles?[index].urlToImage ??
+                                              "",
+                                      title:
+                                          model?.articles?[index].title ?? "",
+                                      source: model
+                                              ?.articles?[index].source?.name ??
+                                          "",
+                                      author:
+                                          model?.articles?[index].author ?? "",
+                                      decription:
+                                          model?.articles?[index].description ??
+                                              "",
+                                      index: index,
+                                    ),
+                                  );
+                                },
+                                child: const Icon(
+                                  Icons.bookmark_border_rounded,
+                                  size: 24,
+                                ),
+                              )
                       ],
                     )
                   ],
