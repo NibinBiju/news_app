@@ -4,10 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:weather_app/controller/hive_controller.dart';
 import 'package:weather_app/controller/news_controller.dart';
 import 'package:weather_app/controller/provider_controller/save_provider.dart';
-import 'package:weather_app/model/news_api_model.dart';
-import 'package:weather_app/views/explained_page/explain_page.dart';
 import 'package:weather_app/views/save_article/save_article_page.dart';
-import 'package:weather_app/views/widgets/news_tile.dart';
 
 class SaveArticle extends StatefulWidget {
   const SaveArticle({super.key});

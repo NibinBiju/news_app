@@ -1,9 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:weather_app/controller/news_controller.dart';
-import 'package:weather_app/controller/provider_controller/save_provider.dart';
-import 'package:weather_app/model/database_model.dart';
-import 'package:weather_app/model/news_api_model.dart';
 
 class SaveAritclePage extends StatelessWidget {
   const SaveAritclePage(
@@ -23,7 +18,7 @@ class SaveAritclePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var saveProvider = Provider.of<SaveProvider>(context);
+    // var saveProvider = Provider.of<SaveProvider>(context);
     return Scaffold(
       body: CustomScrollView(
         slivers: [
