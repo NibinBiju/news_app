@@ -7,11 +7,11 @@ class NewsDbController {
 
   void addtoDb(DatabaseModel databaseModel) {
     savedArticles.add(databaseModel);
-    _dbHive.addToDb();
+    _dbHive.addToDbHive();
   }
 
   void removeArticle(int index) {
-    _dbHive.removeFromDb(index);
+    _dbHive.removeFromDbHive(index);
     savedArticles.removeAt(index);
   }
 }

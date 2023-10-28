@@ -13,11 +13,8 @@ import 'package:weather_app/views/bottom_navigation.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
-  final box = await Hive.openBox("NewsDb");
-  if (Hive.isAdapterRegistered(1)) {
-  } else {
-    Hive.registerAdapter(DatabaseModelAdapter());
-  }
+  Hive.registerAdapter(DatabaseModelAdapter());
+  var box = await Hive.openBox('NewsDb');
   runApp(const MyApp());
 }
 

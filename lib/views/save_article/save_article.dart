@@ -18,11 +18,7 @@ class _SaveArticleState extends State<SaveArticle> {
   final box = Hive.box("NewsDb");
   @override
   void initState() {
-    if (box.isEmpty) {
-      _dbHive.initialData();
-    } else {
-      _dbHive.getData();
-    }
+    _dbHive.getData();
 
     super.initState();
   }
@@ -61,15 +57,21 @@ class _SaveArticleState extends State<SaveArticle> {
                                     return SaveAritclePage(
                                         index: index,
                                         title: NewsDbController
-                                            .savedArticles[index].title,
+                                                .savedArticles[index].title ??
+                                            "",
                                         sourse: NewsDbController
-                                            .savedArticles[index].source,
+                                                .savedArticles[index].source ??
+                                            "",
                                         description: NewsDbController
-                                            .savedArticles[index].decription,
-                                        image: NewsDbController
-                                            .savedArticles[index].decription,
+                                                .savedArticles[index]
+                                                .decription ??
+                                            "",
+                                        // image: NewsDbController
+                                        //         .savedArticles[index].image ??
+                                        // "",
                                         content: NewsDbController
-                                            .savedArticles[index].content);
+                                                .savedArticles[index].content ??
+                                            "");
                                   }));
                                 },
                                 child: SizedBox(
@@ -87,9 +89,10 @@ class _SaveArticleState extends State<SaveArticle> {
                                           decoration: BoxDecoration(
                                             image: DecorationImage(
                                               image: NetworkImage(
-                                                  NewsDbController
-                                                      .savedArticles[index]
-                                                      .image),
+                                                  // NewsDbController
+                                                  //         .savedArticles[index]
+                                                  //         .image ??
+                                                  ""),
                                               fit: BoxFit.cover,
                                             ),
                                           ),
@@ -105,7 +108,9 @@ class _SaveArticleState extends State<SaveArticle> {
                                             padding: const EdgeInsets.all(5),
                                             child: Text(
                                               NewsDbController
-                                                  .savedArticles[index].source,
+                                                      .savedArticles[index]
+                                                      .source ??
+                                                  "",
                                               style: const TextStyle(
                                                 fontSize: 17,
                                                 fontWeight: FontWeight.w600,
@@ -120,7 +125,9 @@ class _SaveArticleState extends State<SaveArticle> {
                                             padding: const EdgeInsets.all(6),
                                             child: Text(
                                               NewsDbController
-                                                  .savedArticles[index].title,
+                                                      .savedArticles[index]
+                                                      .title ??
+                                                  "",
                                               style: const TextStyle(
                                                 fontSize: 19,
                                                 fontWeight: FontWeight.w600,
@@ -138,8 +145,9 @@ class _SaveArticleState extends State<SaveArticle> {
                                                     const EdgeInsets.all(5),
                                                 child: Text(
                                                   NewsDbController
-                                                      .savedArticles[index]
-                                                      .author,
+                                                          .savedArticles[index]
+                                                          .author ??
+                                                      "",
                                                   style: const TextStyle(
                                                     fontSize: 14,
                                                     fontWeight: FontWeight.w600,

@@ -98,7 +98,7 @@ class NewsTile extends StatelessWidget {
                         ),
                         NewsDbController.savedArticles.any((element) =>
                                 element.title == model?.articles?[index].title)
-                            ? Icon(
+                            ? const Icon(
                                 Icons.bookmark,
                                 size: 24,
                               )
@@ -106,9 +106,9 @@ class NewsTile extends StatelessWidget {
                                 onTap: () {
                                   saveprovider.addToSave(
                                     DatabaseModel(
-                                      image:
-                                          model?.articles?[index].urlToImage ??
-                                              "",
+                                      // image:
+                                      //     model?.articles?[index].urlToImage ??
+                                      //         "",
                                       title:
                                           model?.articles?[index].title ?? "",
                                       source: model
@@ -119,7 +119,6 @@ class NewsTile extends StatelessWidget {
                                       decription:
                                           model?.articles?[index].description ??
                                               "",
-                                      index: index,
                                       content:
                                           model?.articles?[index].content ?? "",
                                     ),

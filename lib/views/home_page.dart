@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:weather_app/controller/hive_controller.dart';
 import 'package:weather_app/controller/provider_controller/homepage_provider.dart';
 import 'package:weather_app/views/news_main_body/news_main_body.dart';
 import 'package:weather_app/views/search_page/search_page.dart';
@@ -15,11 +16,13 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
   String nvalue = '';
+  final DbHive _dbHive = DbHive();
 
   @override
   void initState() {
     Provider.of<HomePageProvider>(context, listen: false)
         .fetchData(tapbarlist[0]);
+    _dbHive.getData();
     super.initState();
   }
 

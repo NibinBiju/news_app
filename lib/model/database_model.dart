@@ -1,35 +1,31 @@
-import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 part 'database_model.g.dart';
 
 @HiveType(typeId: 1)
 class DatabaseModel {
+  // @HiveField(0)
+  //  String? image;
+
   @HiveField(0)
-  String image;
+  String? title;
 
   @HiveField(1)
-  String title;
+  String? author;
 
   @HiveField(2)
-  String author;
+  String? source;
 
   @HiveField(3)
-  String source;
+  String? decription;
 
   @HiveField(4)
-  String decription;
-
-  @HiveField(5)
-  String content;
-  @HiveField(6)
-  int index;
+  String? content;
 
   DatabaseModel({
-    required this.image,
-    required this.title,
-    required this.source,
-    required this.author,
-    required this.decription,
-    required this.content,
-    required this.index,
+    this.title,
+    this.source,
+    this.author,
+    this.decription,
+    this.content,
   });
 }

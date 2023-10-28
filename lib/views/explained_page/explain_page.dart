@@ -63,9 +63,9 @@ class DetailsPage extends StatelessWidget {
                               onPressed: () {
                                 saveProvider.addToSave(
                                   DatabaseModel(
-                                      image:
-                                          model?.articles?[index].urlToImage ??
-                                              "",
+                                      // image:
+                                      //     model?.articles?[index].urlToImage ??
+                                      //         "",
                                       title:
                                           model?.articles?[index].title ?? "",
                                       source: model
@@ -76,7 +76,6 @@ class DetailsPage extends StatelessWidget {
                                       decription:
                                           model?.articles?[index].description ??
                                               "",
-                                      index: index,
                                       content:
                                           model?.articles?[index].content ??
                                               ""),
