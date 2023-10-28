@@ -5,9 +5,20 @@ import 'package:weather_app/controller/provider_controller/save_provider.dart';
 import 'package:weather_app/model/database_model.dart';
 import 'package:weather_app/model/news_api_model.dart';
 
-class DetailsPage extends StatelessWidget {
-  const DetailsPage({super.key, required this.model, required this.index});
-  final NewsModel? model;
+class SaveAritclePage extends StatelessWidget {
+  const SaveAritclePage(
+      {super.key,
+      required this.index,
+      required this.title,
+      required this.sourse,
+      required this.description,
+      required this.image,
+      required this.content});
+  final String title;
+  final String sourse;
+  final String description;
+  final String image;
+  final String content;
   final int index;
 
   @override
@@ -43,7 +54,7 @@ class DetailsPage extends StatelessWidget {
                         padding: const EdgeInsets.all(8),
                         color: const Color.fromARGB(255, 72, 27, 80),
                         child: Text(
-                          model?.articles?[index].source?.name ?? "",
+                          sourse,
                           style: const TextStyle(
                             fontSize: 15,
                             color: Colors.white,
@@ -51,48 +62,19 @@ class DetailsPage extends StatelessWidget {
                           ),
                         ),
                       ),
-                      NewsDbController.savedArticles.any((element) =>
-                              element.title == model?.articles?[index].title)
-                          ? IconButton(
-                              onPressed: () {},
-                              icon: const Icon(
-                                Icons.bookmark,
-                                size: 33,
-                              ))
-                          : IconButton(
-                              onPressed: () {
-                                saveProvider.addToSave(
-                                  DatabaseModel(
-                                      image:
-                                          model?.articles?[index].urlToImage ??
-                                              "",
-                                      title:
-                                          model?.articles?[index].title ?? "",
-                                      source: model
-                                              ?.articles?[index].source?.name ??
-                                          "",
-                                      author:
-                                          model?.articles?[index].author ?? "",
-                                      decription:
-                                          model?.articles?[index].description ??
-                                              "",
-                                      index: index,
-                                      content:
-                                          model?.articles?[index].content ??
-                                              ""),
-                                );
-                              },
-                              icon: const Icon(
-                                Icons.bookmark_border,
-                                size: 33,
-                              ))
+                      IconButton(
+                          onPressed: () {},
+                          icon: const Icon(
+                            Icons.bookmark,
+                            size: 33,
+                          ))
                     ],
                   ),
                   SizedBox(
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        model?.articles?[index].title ?? "",
+                        title,
                         style: const TextStyle(
                           fontSize: 32,
                           fontWeight: FontWeight.w600,
@@ -104,7 +86,7 @@ class DetailsPage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      model?.articles?[index].description ?? "",
+                      description,
                       style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
@@ -119,8 +101,7 @@ class DetailsPage extends StatelessWidget {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(22),
                       image: DecorationImage(
-                        image: NetworkImage(
-                            model?.articles?[index].urlToImage ?? ""),
+                        image: NetworkImage(image),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -128,7 +109,7 @@ class DetailsPage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      model?.articles?[index].content ?? "",
+                      content,
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,

@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app/controller/hive_controller.dart';
 import 'package:weather_app/controller/news_controller.dart';
 import 'package:weather_app/controller/provider_controller/save_provider.dart';
+import 'package:weather_app/model/news_api_model.dart';
+import 'package:weather_app/views/explained_page/explain_page.dart';
+import 'package:weather_app/views/save_article/save_article_page.dart';
 import 'package:weather_app/views/widgets/news_tile.dart';
 
 class SaveArticle extends StatefulWidget {
@@ -13,12 +17,18 @@ class SaveArticle extends StatefulWidget {
 }
 
 class _SaveArticleState extends State<SaveArticle> {
-  // final DbHive _dbHive = DbHive();
-  // @override
-  // void initState() {
-  //   _dbHive.getData();
-  //   super.initState();
-  // }
+  final DbHive _dbHive = DbHive();
+  final box = Hive.box("NewsDb");
+  @override
+  void initState() {
+    if (box.isEmpty) {
+      _dbHive.initialData();
+    } else {
+      _dbHive.getData();
+    }
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,15 +58,23 @@ class _SaveArticleState extends State<SaveArticle> {
                             NewsDbController.savedArticles.length,
                             (index) {
                               return GestureDetector(
-                                // onTap: () {
-                                //   Navigator.push(context,
-                                //       MaterialPageRoute(builder: (context) {
-                                //     return DetailsPage(
-                                //       model: model,
-                                //       index: index,
-                                //     );
-                                //   }));
-                                // },
+                                onTap: () {
+                                  Navigator.push(context,
+                                      MaterialPageRoute(builder: (context) {
+                                    return SaveAritclePage(
+                                        index: index,
+                                        title: NewsDbController
+                                            .savedArticles[index].title,
+                                        sourse: NewsDbController
+                                            .savedArticles[index].source,
+                                        description: NewsDbController
+                                            .savedArticles[index].decription,
+                                        image: NewsDbController
+                                            .savedArticles[index].decription,
+                                        content: NewsDbController
+                                            .savedArticles[index].content);
+                                  }));
+                                },
                                 child: SizedBox(
                                   width: double.infinity,
                                   height: 170,

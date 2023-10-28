@@ -1,21 +1,26 @@
-// // import 'package:hive/hive.dart';
-// import 'package:hive/hive.dart';
-// import 'package:provider/provider.dart';
-// import 'package:weather_app/controller/provider_controller/save_provider.dart';
+import 'package:hive/hive.dart';
+import 'package:hive/hive.dart';
+import 'package:provider/provider.dart';
+import 'package:weather_app/controller/news_controller.dart';
+import 'package:weather_app/controller/provider_controller/save_provider.dart';
 
-// class DbHive {
-//   final _db = Hive.box("NewsDb");
+class DbHive {
+  final _db = Hive.box("NewsDb");
 
-//   void addToDb() {
-//     _db.put("NewsDb", SaveProvider().savedArticles);
-//     print("added sucessfully");
-//   }
+  void initialData() {
+    NewsDbController.savedArticles = [];
+  }
 
-//   void removeFromDb(int index) {
-//     _db.deleteAt(index);
-//   }
+  void addToDb() {
+    _db.put("NEWSDB", NewsDbController.savedArticles);
+    print("added sucessfully");
+  }
 
-//   void getData() {
-//     SaveProvider().savedArticles = _db.get("NewsDb");
-//   }
-// }
+  void removeFromDb(int index) {
+    _db.deleteAt(index);
+  }
+
+  void getData() {
+    NewsDbController.savedArticles = _db.get("NEWSDB");
+  }
+}

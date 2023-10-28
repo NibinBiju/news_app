@@ -19,6 +19,8 @@ class DatabaseModel {
   String decription;
 
   @HiveField(5)
+  String content;
+  @HiveField(6)
   int index;
 
   DatabaseModel({
@@ -27,6 +29,7 @@ class DatabaseModel {
     required this.source,
     required this.author,
     required this.decription,
+    required this.content,
     required this.index,
   });
 }

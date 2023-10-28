@@ -22,14 +22,15 @@ class DatabaseModelAdapter extends TypeAdapter<DatabaseModel> {
       source: fields[3] as String,
       author: fields[2] as String,
       decription: fields[4] as String,
-      index: fields[5] as int,
+      content: fields[5] as String,
+      index: fields[6] as int,
     );
   }
 
   @override
   void write(BinaryWriter writer, DatabaseModel obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(7)
       ..writeByte(0)
       ..write(obj.image)
       ..writeByte(1)
@@ -41,6 +42,8 @@ class DatabaseModelAdapter extends TypeAdapter<DatabaseModel> {
       ..writeByte(4)
       ..write(obj.decription)
       ..writeByte(5)
+      ..write(obj.content)
+      ..writeByte(6)
       ..write(obj.index);
   }
 

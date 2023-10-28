@@ -120,6 +120,8 @@ class NewsTile extends StatelessWidget {
                                           model?.articles?[index].description ??
                                               "",
                                       index: index,
+                                      content:
+                                          model?.articles?[index].content ?? "",
                                     ),
                                   );
                                 },
