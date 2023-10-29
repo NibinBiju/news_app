@@ -14,7 +14,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   Hive.registerAdapter(DatabaseModelAdapter());
-  var box = await Hive.openBox('NewsDb');
+  var dbBox = await Hive.openBox('NewsDb');
   runApp(const MyApp());
 }
 

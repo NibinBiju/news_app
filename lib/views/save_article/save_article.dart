@@ -18,7 +18,11 @@ class _SaveArticleState extends State<SaveArticle> {
   final box = Hive.box("NewsDb");
   @override
   void initState() {
-    _dbHive.getData();
+    if (box.isEmpty) {
+      _dbHive.initialData();
+    } else {
+      _dbHive.getData();
+    }
 
     super.initState();
   }
@@ -66,9 +70,9 @@ class _SaveArticleState extends State<SaveArticle> {
                                                 .savedArticles[index]
                                                 .decription ??
                                             "",
-                                        // image: NewsDbController
-                                        //         .savedArticles[index].image ??
-                                        // "",
+                                        image: NewsDbController
+                                                .savedArticles[index].image ??
+                                            "",
                                         content: NewsDbController
                                                 .savedArticles[index].content ??
                                             "");
@@ -89,10 +93,10 @@ class _SaveArticleState extends State<SaveArticle> {
                                           decoration: BoxDecoration(
                                             image: DecorationImage(
                                               image: NetworkImage(
-                                                  // NewsDbController
-                                                  //         .savedArticles[index]
-                                                  //         .image ??
-                                                  ""),
+                                                  NewsDbController
+                                                          .savedArticles[index]
+                                                          .image ??
+                                                      ""),
                                               fit: BoxFit.cover,
                                             ),
                                           ),

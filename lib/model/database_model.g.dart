@@ -17,27 +17,30 @@ class DatabaseModelAdapter extends TypeAdapter<DatabaseModel> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return DatabaseModel(
-      title: fields[0] as String?,
-      source: fields[2] as String?,
-      author: fields[1] as String?,
-      decription: fields[3] as String?,
-      content: fields[4] as String?,
+      image: fields[0] as String?,
+      title: fields[1] as String?,
+      source: fields[3] as String?,
+      author: fields[2] as String?,
+      decription: fields[4] as String?,
+      content: fields[5] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, DatabaseModel obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(6)
       ..writeByte(0)
-      ..write(obj.title)
+      ..write(obj.image)
       ..writeByte(1)
-      ..write(obj.author)
+      ..write(obj.title)
       ..writeByte(2)
-      ..write(obj.source)
+      ..write(obj.author)
       ..writeByte(3)
-      ..write(obj.decription)
+      ..write(obj.source)
       ..writeByte(4)
+      ..write(obj.decription)
+      ..writeByte(5)
       ..write(obj.content);
   }
 

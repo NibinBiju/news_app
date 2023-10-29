@@ -24,9 +24,10 @@ class HomePageProvider with ChangeNotifier {
         'https://newsapi.org/v2/everything?q=$newsSerch&apiKey=b719771d665245c9b1dc922eb15e9b65');
 
     var response = await http.get(uri);
+
     print(response.statusCode);
     print(response.body);
-
+    print(model?.articles?[indexvalue].urlToImage);
     jsonData = jsonDecode(response.body);
 
     model = NewsModel.fromJson(jsonData);
