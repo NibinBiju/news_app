@@ -1,26 +1,26 @@
-import 'package:hive/hive.dart';
+// import 'package:hive/hive.dart';
 
-import 'package:weather_app/controller/news_controller.dart';
-import 'package:weather_app/model/database_model.dart';
+// import 'package:weather_app/controller/news_controller.dart';
+// import 'package:weather_app/model/database_model.dart';
 
-class DbHive {
-  final _db = Hive.box('NewsDb');
+// class DbHive {
+//   final _db = Hive.box('NewsDb');
 
-  void initialData() {
-    NewsDbController.savedArticles = [DatabaseModel(title: "Nibin")];
-  }
+//   void initialData() {
+//     NewsDbController.savedArticles = [DatabaseModel(title: "Nibin")];
+//   }
 
-  void addToDbHive() {
-    _db.put("NEWSDB", NewsDbController.savedArticles);
-    print("added sucessfully");
-  }
+//   void addToDbHive() {
+//     _db.put("NEWSDB", NewsDbController.savedArticles);
+//     print("added sucessfully");
+//   }
 
-  void removeFromDbHive(int index) {
-    _db.deleteAt(index);
-  }
+//   void removeFromDbHive(int index) {
+//     _db.deleteAt(index);
+//   }
 
-  void getData() {
-    final List mylist = _db.get("NEWSDB");
-    NewsDbController.savedArticles = mylist.cast<DatabaseModel>();
-  }
-}
+//   void getData() {
+//     final List mylist = _db.get("NEWSDB");
+//     NewsDbController.savedArticles = mylist.cast<DatabaseModel>();
+//   }
+// }

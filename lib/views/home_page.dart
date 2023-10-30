@@ -16,13 +16,13 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
   String nvalue = '';
-  final DbHive _dbHive = DbHive();
+  // final DbHive _dbHive = DbHive();
 
   @override
   void initState() {
-    Provider.of<HomePageProvider>(context, listen: false)
-        .fetchData(tapbarlist[0]);
-    _dbHive.getData();
+    Provider.of<HomePageProvider>(context, listen: false).fetchData(tapbarlist[
+        Provider.of<HomePageProvider>(context, listen: false).indexvalue]);
+    // _dbHive.getData();
     super.initState();
   }
 
@@ -88,67 +88,75 @@ class _HomepageState extends State<Homepage> {
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.all(3.0),
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      //tap bar
-                      SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                            children: List.generate(
-                                tapbarlist.length,
-                                (index) => Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: GestureDetector(
-                                        onTap: () {
-                                          homeProvider.appbarIndex(
-                                              index: index);
-
-                                          homeProvider.fetchData(tapbarlist[
-                                              homeProvider.indexvalue]);
-                                        },
-                                        child: Container(
-                                          padding: const EdgeInsets.all(8),
-                                          decoration: BoxDecoration(
-                                              color: homeProvider.indexvalue ==
-                                                      index
-                                                  ? Colors.black
-                                                  : Colors.grey.shade300,
-                                              borderRadius:
-                                                  BorderRadius.circular(19)),
-                                          child: Center(
-                                            child: Text(
-                                              tapbarlist[index],
-                                              style: TextStyle(
+                child: Scrollbar(
+                  child: SingleChildScrollView(
+                    reverse: true,
+                    child: Column(
+                      children: [
+                        //tap bar
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                              children: List.generate(
+                                  tapbarlist.length,
+                                  (index) => Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            homeProvider.appbarIndex(
+                                                index: index);
+                                            homeProvider.fetchData(tapbarlist[
+                                                homeProvider.indexvalue]);
+                                          },
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(18),
+                                            clipBehavior: Clip.antiAlias,
+                                            child: Container(
+                                              padding: const EdgeInsets.all(14),
+                                              decoration: BoxDecoration(
                                                 color:
                                                     homeProvider.indexvalue ==
                                                             index
+                                                        ? Colors.black
+                                                        : Colors.grey.shade300,
+                                              ),
+                                              child: Center(
+                                                child: Text(
+                                                  tapbarlist[index],
+                                                  style: TextStyle(
+                                                    color: homeProvider
+                                                                .indexvalue ==
+                                                            index
                                                         ? Colors.white
                                                         : Colors.black,
-                                                fontWeight: FontWeight.w600,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                ),
                                               ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                    ))),
-                      ),
+                                      ))),
+                        ),
 
-                      // main body
-                      homeProvider.isLoad
-                          ? const SizedBox(
-                              width: double.infinity,
-                              height: 300,
-                              child: Center(child: CircularProgressIndicator()),
-                            )
-                          : NewsMainBody(
-                              model: homeProvider.model,
-                              fetchdata: () {
-                                homeProvider.fetchData("Latest");
-                              },
-                              title: tapbarlist[homeProvider.indexvalue],
-                            )
-                    ],
+                        // main body
+                        homeProvider.isLoad
+                            ? const SizedBox(
+                                width: double.infinity,
+                                height: 300,
+                                child:
+                                    Center(child: CircularProgressIndicator()),
+                              )
+                            : NewsMainBody(
+                                model: homeProvider.model,
+                                fetchdata: () {
+                                  homeProvider.fetchData("Latest");
+                                },
+                                title: tapbarlist[homeProvider.indexvalue],
+                              )
+                      ],
+                    ),
                   ),
                 ),
               ),

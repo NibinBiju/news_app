@@ -14,18 +14,18 @@ class SaveArticle extends StatefulWidget {
 }
 
 class _SaveArticleState extends State<SaveArticle> {
-  final DbHive _dbHive = DbHive();
-  final box = Hive.box("NewsDb");
-  @override
-  void initState() {
-    if (box.isEmpty) {
-      _dbHive.initialData();
-    } else {
-      _dbHive.getData();
-    }
+  // final DbHive _dbHive = DbHive();
+  // final box = Hive.box("NewsDb");
+  // @override
+  // void initState() {
+  //   if (box.isEmpty) {
+  //     _dbHive.initialData();
+  //   } else {
+  //     _dbHive.getData();
+  //   }
 
-    super.initState();
-  }
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -44,148 +44,175 @@ class _SaveArticleState extends State<SaveArticle> {
             ),
           ),
           SliverToBoxAdapter(
-            child: Column(
-              children: [
-                SingleChildScrollView(
-                  child: Center(
-                    child: Column(
-                      children: [
-                        Column(
-                          children: List.generate(
-                            NewsDbController.savedArticles.length,
-                            (index) {
-                              return GestureDetector(
-                                onTap: () {
-                                  Navigator.push(context,
-                                      MaterialPageRoute(builder: (context) {
-                                    return SaveAritclePage(
-                                        index: index,
-                                        title: NewsDbController
-                                                .savedArticles[index].title ??
-                                            "",
-                                        sourse: NewsDbController
-                                                .savedArticles[index].source ??
-                                            "",
-                                        description: NewsDbController
-                                                .savedArticles[index]
-                                                .decription ??
-                                            "",
-                                        image: NewsDbController
-                                                .savedArticles[index].image ??
-                                            "",
-                                        content: NewsDbController
-                                                .savedArticles[index].content ??
-                                            "");
-                                  }));
-                                },
-                                child: SizedBox(
-                                  width: double.infinity,
-                                  height: 170,
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      ClipRRect(
-                                        borderRadius: BorderRadius.circular(20),
-                                        child: Container(
-                                          width: 140,
-                                          height: 140,
-                                          decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                              image: NetworkImage(
-                                                  NewsDbController
-                                                          .savedArticles[index]
-                                                          .image ??
-                                                      ""),
-                                              fit: BoxFit.cover,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Container(
-                                            padding: const EdgeInsets.all(5),
-                                            child: Text(
-                                              NewsDbController
-                                                      .savedArticles[index]
-                                                      .source ??
-                                                  "",
-                                              style: const TextStyle(
-                                                fontSize: 17,
-                                                fontWeight: FontWeight.w600,
-                                                color: Color.fromARGB(
-                                                    255, 143, 140, 140),
-                                              ),
-                                            ),
-                                          ),
-                                          Container(
-                                            width: 230,
-                                            height: 80,
-                                            padding: const EdgeInsets.all(6),
-                                            child: Text(
-                                              NewsDbController
+            child: NewsDbController.savedArticles.isEmpty
+                ? Container(
+                    width: 300,
+                    height: 500,
+                    child: Center(
+                      child: Image.asset(
+                          "assets/images/Collection list is empty.jpeg"),
+                    ),
+                  )
+                : Column(
+                    children: [
+                      SingleChildScrollView(
+                        child: Center(
+                          child: Column(
+                            children: [
+                              Column(
+                                children: List.generate(
+                                  NewsDbController.savedArticles.length,
+                                  (index) {
+                                    return GestureDetector(
+                                      onTap: () {
+                                        Navigator.push(context,
+                                            MaterialPageRoute(
+                                                builder: (context) {
+                                          return SaveAritclePage(
+                                              index: index,
+                                              title: NewsDbController
                                                       .savedArticles[index]
                                                       .title ??
                                                   "",
-                                              style: const TextStyle(
-                                                fontSize: 19,
-                                                fontWeight: FontWeight.w600,
-                                                color: Colors.black,
-                                              ),
-                                              overflow: TextOverflow.ellipsis,
-                                              maxLines: 3,
-                                            ),
-                                          ),
-                                          Row(
-                                            children: [
-                                              Container(
-                                                width: 200,
-                                                padding:
-                                                    const EdgeInsets.all(5),
-                                                child: Text(
-                                                  NewsDbController
-                                                          .savedArticles[index]
-                                                          .author ??
-                                                      "",
-                                                  style: const TextStyle(
-                                                    fontSize: 14,
-                                                    fontWeight: FontWeight.w600,
-                                                    color: Colors.black,
+                                              sourse: NewsDbController
+                                                      .savedArticles[index]
+                                                      .source ??
+                                                  "",
+                                              description: NewsDbController
+                                                      .savedArticles[index]
+                                                      .decription ??
+                                                  "",
+                                              image: NewsDbController
+                                                      .savedArticles[index]
+                                                      .image ??
+                                                  "",
+                                              content: NewsDbController
+                                                      .savedArticles[index]
+                                                      .content ??
+                                                  "");
+                                        }));
+                                      },
+                                      child: SizedBox(
+                                        width: double.infinity,
+                                        height: 170,
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
+                                              child: Container(
+                                                width: 140,
+                                                height: 140,
+                                                decoration: BoxDecoration(
+                                                  image: DecorationImage(
+                                                    image: NetworkImage(
+                                                        NewsDbController
+                                                                .savedArticles[
+                                                                    index]
+                                                                .image ??
+                                                            ""),
+                                                    fit: BoxFit.cover,
                                                   ),
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                  maxLines: 2,
                                                 ),
                                               ),
-                                              InkWell(
-                                                onTap: () {
-                                                  saveProvider.remove(index);
-                                                },
-                                                child:
-                                                    const Icon(Icons.bookmark),
-                                              )
-                                            ],
-                                          )
-                                        ],
+                                            ),
+                                            Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceEvenly,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Container(
+                                                  padding:
+                                                      const EdgeInsets.all(5),
+                                                  child: Text(
+                                                    NewsDbController
+                                                            .savedArticles[
+                                                                index]
+                                                            .source ??
+                                                        "",
+                                                    style: const TextStyle(
+                                                      fontSize: 17,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      color: Color.fromARGB(
+                                                          255, 143, 140, 140),
+                                                    ),
+                                                  ),
+                                                ),
+                                                Container(
+                                                  width: 230,
+                                                  height: 80,
+                                                  padding:
+                                                      const EdgeInsets.all(6),
+                                                  child: Text(
+                                                    NewsDbController
+                                                            .savedArticles[
+                                                                index]
+                                                            .title ??
+                                                        "",
+                                                    style: const TextStyle(
+                                                      fontSize: 19,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      color: Colors.black,
+                                                    ),
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    maxLines: 3,
+                                                  ),
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Container(
+                                                      width: 200,
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              5),
+                                                      child: Text(
+                                                        NewsDbController
+                                                                .savedArticles[
+                                                                    index]
+                                                                .author ??
+                                                            "",
+                                                        style: const TextStyle(
+                                                          fontSize: 14,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          color: Colors.black,
+                                                        ),
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
+                                                        maxLines: 2,
+                                                      ),
+                                                    ),
+                                                    InkWell(
+                                                      onTap: () {
+                                                        saveProvider
+                                                            .remove(index);
+                                                      },
+                                                      child: const Icon(
+                                                          Icons.bookmark),
+                                                    )
+                                                  ],
+                                                )
+                                              ],
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                    ],
-                                  ),
+                                    );
+                                  },
                                 ),
-                              );
-                            },
+                              )
+                            ],
                           ),
-                        )
-                      ],
-                    ),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-              ],
-            ),
           )
         ],
       ),
