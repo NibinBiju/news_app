@@ -14,22 +14,19 @@ class SaveArticle extends StatefulWidget {
 }
 
 class _SaveArticleState extends State<SaveArticle> {
-  // final DbHive _dbHive = DbHive();
-  // final box = Hive.box("NewsDb");
-  // @override
-  // void initState() {
-  //   if (box.isEmpty) {
-  //     _dbHive.initialData();
-  //   } else {
-  //     _dbHive.getData();
-  //   }
+  final DbHive _dbHive = DbHive();
+  final box = Hive.box("NewsDb");
+  @override
+  void initState() {
+    _dbHive.getData();
 
-  //   super.initState();
-  // }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     var saveProvider = Provider.of<SaveProvider>(context);
+
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -46,6 +43,7 @@ class _SaveArticleState extends State<SaveArticle> {
           SliverToBoxAdapter(
             child: NewsDbController.savedArticles.isEmpty
                 ? Container(
+                    color: Colors.white,
                     width: 300,
                     height: 500,
                     child: Center(
@@ -82,10 +80,10 @@ class _SaveArticleState extends State<SaveArticle> {
                                                       .savedArticles[index]
                                                       .decription ??
                                                   "",
-                                              image: NewsDbController
-                                                      .savedArticles[index]
-                                                      .image ??
-                                                  "",
+                                              // image: NewsDbController
+                                              //         .savedArticles[index]
+                                              //         .image ??
+                                              //     "",
                                               content: NewsDbController
                                                       .savedArticles[index]
                                                       .content ??
@@ -106,16 +104,16 @@ class _SaveArticleState extends State<SaveArticle> {
                                                 width: 140,
                                                 height: 140,
                                                 decoration: BoxDecoration(
-                                                  image: DecorationImage(
-                                                    image: NetworkImage(
-                                                        NewsDbController
-                                                                .savedArticles[
-                                                                    index]
-                                                                .image ??
-                                                            ""),
-                                                    fit: BoxFit.cover,
-                                                  ),
-                                                ),
+                                                    // image: DecorationImage(
+                                                    //   // image: NetworkImage(
+                                                    //   //     NewsDbController
+                                                    //   //             .savedArticles[
+                                                    //   //                 index]
+                                                    //   //             .image ??
+                                                    //   //         ""),
+                                                    //   fit: BoxFit.cover,
+                                                    // ),
+                                                    ),
                                               ),
                                             ),
                                             Column(

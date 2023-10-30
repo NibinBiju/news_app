@@ -8,12 +8,12 @@ class SaveAritclePage extends StatelessWidget {
       required this.title,
       required this.sourse,
       required this.description,
-      required this.image,
+      // required this.image,
       required this.content});
   final String title;
   final String sourse;
   final String description;
-  final String image;
+  // final String image;
   final String content;
   final int index;
 
@@ -97,7 +97,8 @@ class SaveAritclePage extends StatelessWidget {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(22),
                       image: DecorationImage(
-                        image: NetworkImage(image),
+                        //image
+                        image: NetworkImage("image"),
                         fit: BoxFit.cover,
                       ),
                     ),

@@ -3,26 +3,26 @@ part 'database_model.g.dart';
 
 @HiveType(typeId: 1)
 class DatabaseModel {
-  @HiveField(0)
-  String? image;
+  // @HiveField(0)
+  // String? image;
 
-  @HiveField(1)
+  @HiveField(0)
   String? title;
 
-  @HiveField(2)
+  @HiveField(1)
   String? author;
 
-  @HiveField(3)
+  @HiveField(2)
   String? source;
 
-  @HiveField(4)
+  @HiveField(3)
   String? decription;
 
-  @HiveField(5)
+  @HiveField(4)
   String? content;
 
   DatabaseModel({
-    this.image,
+    // this.image,
     this.title,
     this.source,
     this.author,

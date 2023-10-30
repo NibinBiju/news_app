@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_typing_uninitialized_variables, avoid_print
 
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app/controller/hive_controller.dart';
 import 'package:weather_app/controller/provider_controller/homepage_provider.dart';
@@ -17,12 +18,17 @@ class Homepage extends StatefulWidget {
 class _HomepageState extends State<Homepage> {
   String nvalue = '';
   // final DbHive _dbHive = DbHive();
+  // final box = Hive.box("NewsDb");
 
   @override
   void initState() {
     Provider.of<HomePageProvider>(context, listen: false).fetchData(tapbarlist[
         Provider.of<HomePageProvider>(context, listen: false).indexvalue]);
-    // _dbHive.getData();
+    // if (box.isEmpty) {
+    //   _dbHive.initialData();
+    // } else {
+    //   _dbHive.getData();
+    // }
     super.initState();
   }
 
