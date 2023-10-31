@@ -16,8 +16,7 @@ class SaveProvider with ChangeNotifier {
 
   void remove(int index) {
     _newsDbController.removeArticle(index);
-    _dbHive.removeFromDbHive(index);
-    print(index);
+    _dbHive.addToDbHive();
     notifyListeners();
   }
 }

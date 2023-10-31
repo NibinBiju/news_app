@@ -10,10 +10,6 @@ class DbHive {
     _db.put("NEWSDB", NewsDbController.savedArticles);
   }
 
-  void removeFromDbHive(int index) {
-    _db.deleteAt(index);
-  }
-
   void getData() {
     final List mylist = _db.get("NEWSDB") ?? [];
     NewsDbController.savedArticles = mylist.cast<DatabaseModel>();
