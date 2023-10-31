@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:hive_flutter/adapters.dart';
 import 'package:weather_app/controller/hive_controller.dart';
 import 'package:weather_app/controller/news_controller.dart';
 import 'package:weather_app/model/database_model.dart';
