@@ -12,6 +12,5 @@ class NewsDbController {
 
   void removeArticle(int index) {
     savedArticles.removeAt(index);
-    _dbHive.removeFromDbHive(index);
   }
 }

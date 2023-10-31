@@ -106,16 +106,16 @@ class NewsTile extends StatelessWidget {
                                 onTap: () {
                                   saveprovider.addToSave(
                                     DatabaseModel(
-                                      // image:
-                                      //     model?.articles?[index].urlToImage ??
-                                      //         "",
+                                      image:
+                                          model?.articles?[index].urlToImage ??
+                                              "",
                                       title:
                                           model?.articles?[index].title ?? "",
                                       source: model
                                               ?.articles?[index].source?.name ??
                                           "",
-                                      author:
-                                          model?.articles?[index].author ?? "",
+                                      // author:
+                                      //     model?.articles?[index].author ?? "",
                                       decription:
                                           model?.articles?[index].description ??
                                               "",

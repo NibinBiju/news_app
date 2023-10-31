@@ -16,6 +16,7 @@ class SaveArticle extends StatefulWidget {
 class _SaveArticleState extends State<SaveArticle> {
   final DbHive _dbHive = DbHive();
   final box = Hive.box("NewsDb");
+
   @override
   void initState() {
     _dbHive.getData();
@@ -73,21 +74,17 @@ class _SaveArticleState extends State<SaveArticle> {
                                                       .title ??
                                                   "",
                                               sourse: NewsDbController
-                                                      .savedArticles[index]
-                                                      .source ??
-                                                  "",
+                                                  .savedArticles[index].source,
                                               description: NewsDbController
+                                                  .savedArticles[index]
+                                                  .decription,
+                                              image: NewsDbController
                                                       .savedArticles[index]
-                                                      .decription ??
+                                                      .image ??
                                                   "",
-                                              // image: NewsDbController
-                                              //         .savedArticles[index]
-                                              //         .image ??
-                                              //     "",
                                               content: NewsDbController
-                                                      .savedArticles[index]
-                                                      .content ??
-                                                  "");
+                                                  .savedArticles[index]
+                                                  .content);
                                         }));
                                       },
                                       child: SizedBox(
@@ -104,16 +101,16 @@ class _SaveArticleState extends State<SaveArticle> {
                                                 width: 140,
                                                 height: 140,
                                                 decoration: BoxDecoration(
-                                                    // image: DecorationImage(
-                                                    //   // image: NetworkImage(
-                                                    //   //     NewsDbController
-                                                    //   //             .savedArticles[
-                                                    //   //                 index]
-                                                    //   //             .image ??
-                                                    //   //         ""),
-                                                    //   fit: BoxFit.cover,
-                                                    // ),
-                                                    ),
+                                                  image: DecorationImage(
+                                                    image: NetworkImage(
+                                                        NewsDbController
+                                                                .savedArticles[
+                                                                    index]
+                                                                .image ??
+                                                            ""),
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                                ),
                                               ),
                                             ),
                                             Column(
@@ -127,10 +124,8 @@ class _SaveArticleState extends State<SaveArticle> {
                                                       const EdgeInsets.all(5),
                                                   child: Text(
                                                     NewsDbController
-                                                            .savedArticles[
-                                                                index]
-                                                            .source ??
-                                                        "",
+                                                        .savedArticles[index]
+                                                        .source,
                                                     style: const TextStyle(
                                                       fontSize: 17,
                                                       fontWeight:
@@ -169,13 +164,9 @@ class _SaveArticleState extends State<SaveArticle> {
                                                       padding:
                                                           const EdgeInsets.all(
                                                               5),
-                                                      child: Text(
-                                                        NewsDbController
-                                                                .savedArticles[
-                                                                    index]
-                                                                .author ??
-                                                            "",
-                                                        style: const TextStyle(
+                                                      child: const Text(
+                                                        '',
+                                                        style: TextStyle(
                                                           fontSize: 14,
                                                           fontWeight:
                                                               FontWeight.w600,
@@ -190,6 +181,7 @@ class _SaveArticleState extends State<SaveArticle> {
                                                       onTap: () {
                                                         saveProvider
                                                             .remove(index);
+                                                        print(index);
                                                       },
                                                       child: const Icon(
                                                           Icons.bookmark),

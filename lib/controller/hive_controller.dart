@@ -6,13 +6,8 @@ import 'package:weather_app/model/database_model.dart';
 class DbHive {
   final _db = Hive.box('NewsDb');
 
-  void initialData() {
-    NewsDbController.savedArticles = [DatabaseModel(title: "Nibin")];
-  }
-
   void addToDbHive() {
     _db.put("NEWSDB", NewsDbController.savedArticles);
-    print("added sucessfully");
   }
 
   void removeFromDbHive(int index) {

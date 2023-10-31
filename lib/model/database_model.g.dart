@@ -17,11 +17,11 @@ class DatabaseModelAdapter extends TypeAdapter<DatabaseModel> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return DatabaseModel(
-      title: fields[0] as String?,
-      source: fields[2] as String?,
-      author: fields[1] as String?,
-      decription: fields[3] as String?,
-      content: fields[4] as String?,
+      image: fields[0] as String?,
+      title: fields[1] as String?,
+      source: fields[2] as String,
+      decription: fields[3] as String,
+      content: fields[4] as String,
     );
   }
 
@@ -30,9 +30,9 @@ class DatabaseModelAdapter extends TypeAdapter<DatabaseModel> {
     writer
       ..writeByte(5)
       ..writeByte(0)
-      ..write(obj.title)
+      ..write(obj.image)
       ..writeByte(1)
-      ..write(obj.author)
+      ..write(obj.title)
       ..writeByte(2)
       ..write(obj.source)
       ..writeByte(3)

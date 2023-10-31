@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/controller/news_controller.dart';
+import 'package:provider/provider.dart';
+import 'package:weather_app/controller/provider_controller/save_provider.dart';
 
 class SaveAritclePage extends StatelessWidget {
   const SaveAritclePage(
@@ -8,18 +9,18 @@ class SaveAritclePage extends StatelessWidget {
       required this.title,
       required this.sourse,
       required this.description,
-      // required this.image,
+      required this.image,
       required this.content});
   final String title;
   final String sourse;
   final String description;
-  // final String image;
+  final String image;
   final String content;
   final int index;
 
   @override
   Widget build(BuildContext context) {
-    // var saveProvider = Provider.of<SaveProvider>(context);
+    var saveProvider = Provider.of<SaveProvider>(context);
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -59,7 +60,9 @@ class SaveAritclePage extends StatelessWidget {
                         ),
                       ),
                       IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            saveProvider.remove(index);
+                          },
                           icon: const Icon(
                             Icons.bookmark,
                             size: 33,
@@ -97,8 +100,7 @@ class SaveAritclePage extends StatelessWidget {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(22),
                       image: DecorationImage(
-                        //image
-                        image: NetworkImage("image"),
+                        image: NetworkImage(image),
                         fit: BoxFit.cover,
                       ),
                     ),
