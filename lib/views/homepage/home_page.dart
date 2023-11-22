@@ -6,6 +6,7 @@ import 'package:weather_app/controller/provider_controller/homepage_controller/h
 import 'package:weather_app/views/about_us/about_us.dart';
 import 'package:weather_app/views/homepage/widgets/shimmer_widget/shimmer_containers.dart';
 import 'package:weather_app/views/news_main_body/news_main_body.dart';
+import 'package:weather_app/views/privacy_page/privacy_page.dart';
 import 'package:weather_app/views/search_page/search_page.dart';
 
 class Homepage extends StatefulWidget {
@@ -32,7 +33,6 @@ class _HomepageState extends State<Homepage> {
     'Entertaiment',
     'Sports',
     "Health",
-    "Kerala",
     "Trending",
   ];
 
@@ -66,13 +66,13 @@ class _HomepageState extends State<Homepage> {
             ListTile(
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return AboutUsPage();
+                  return const AboutUsPage();
                 }));
               },
               title: const Text(
                 'About us',
                 style: TextStyle(
-                  color: Colors.grey,
+                  color: Color.fromARGB(255, 100, 100, 100),
                   fontSize: 24,
                 ),
               ),
@@ -80,7 +80,7 @@ class _HomepageState extends State<Homepage> {
                 onPressed: () {},
                 icon: const Icon(
                   Icons.more,
-                  color: Colors.grey,
+                  color: Color.fromARGB(255, 100, 100, 100),
                 ),
               ),
             ),
@@ -91,10 +91,15 @@ class _HomepageState extends State<Homepage> {
               ),
             ),
             ListTile(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return const PrivacyDetailsPage();
+                }));
+              },
               title: const Text(
-                "Privacy & Policy's",
+                "Privacy Policy",
                 style: TextStyle(
-                  color: Colors.grey,
+                  color: Color.fromARGB(255, 100, 100, 100),
                   fontSize: 24,
                 ),
               ),
@@ -102,7 +107,7 @@ class _HomepageState extends State<Homepage> {
                 onPressed: () {},
                 icon: const Icon(
                   Icons.more_horiz,
-                  color: Colors.grey,
+                  color: Color.fromARGB(255, 100, 100, 100),
                 ),
               ),
             ),
@@ -116,7 +121,7 @@ class _HomepageState extends State<Homepage> {
               title: const Text(
                 'How to use',
                 style: TextStyle(
-                  color: Colors.grey,
+                  color: Color.fromARGB(255, 100, 100, 100),
                   fontSize: 24,
                 ),
               ),
@@ -124,7 +129,7 @@ class _HomepageState extends State<Homepage> {
                 onPressed: () {},
                 icon: const Icon(
                   Icons.info,
-                  color: Colors.grey,
+                  color: Color.fromARGB(255, 100, 100, 100),
                 ),
               ),
             ),
@@ -168,7 +173,7 @@ class _HomepageState extends State<Homepage> {
               centerTitle: true,
               backgroundColor: Colors.grey,
               elevation: 0,
-              title: const Text("N News"),
+              title: const Text("News Express"),
               actions: [
                 IconButton(
                   onPressed: () {},

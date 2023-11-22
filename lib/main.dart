@@ -8,7 +8,7 @@ import 'package:weather_app/controller/provider_controller/homepage_controller/h
 import 'package:weather_app/controller/savepage_controller/save_provider.dart';
 import 'package:weather_app/controller/savepage_controller/searchapage_controller/search_page.dart';
 import 'package:weather_app/model/database_model.dart';
-import 'package:weather_app/views/bottom_navigation.dart';
+import 'package:weather_app/views/splash_screen/splash_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,12 +41,13 @@ class MyApp extends StatelessWidget {
         )
       ],
       child: MaterialApp(
-          title: "News App",
-          theme: ThemeData(
-            primarySwatch: Colors.grey,
-          ),
-          debugShowCheckedModeBanner: false,
-          home: BottomNavigationPage()),
+        title: "News App",
+        theme: ThemeData(
+          primarySwatch: Colors.grey,
+        ),
+        debugShowCheckedModeBanner: false,
+        home: const SplashScreen(),
+      ),
     );
   }
 }
