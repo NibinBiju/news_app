@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:weather_app/controller/news_controller.dart';
-import 'package:weather_app/controller/provider_controller/save_provider.dart';
+import 'package:weather_app/controller/db_controller/news_controller.dart';
+import 'package:weather_app/controller/savepage_controller/save_provider.dart';
 import 'package:weather_app/model/database_model.dart';
 import 'package:weather_app/model/news_api_model.dart';
 import 'package:weather_app/views/explained_page/explain_page.dart';
@@ -43,8 +43,9 @@ class NewsTile extends StatelessWidget {
                     height: 140,
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: NetworkImage(
-                            model?.articles?[index].urlToImage ?? ""),
+                        image: NetworkImage(model
+                                ?.articles?[index].urlToImage ??
+                            "https://img.freepik.com/premium-vector/news-pattern-consisting-microphone-tv-radio-newspaper-phone-speaker-planet_505620-315.jpg"),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -77,7 +78,7 @@ class NewsTile extends StatelessWidget {
                           color: Colors.black,
                         ),
                         overflow: TextOverflow.ellipsis,
-                        maxLines: 3,
+                        maxLines: 2,
                       ),
                     ),
                     Row(

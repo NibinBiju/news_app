@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
-import 'package:weather_app/controller/hive_controller.dart';
-import 'package:weather_app/controller/news_controller.dart';
-import 'package:weather_app/controller/provider_controller/save_provider.dart';
+import 'package:weather_app/controller/db_controller/hive_controller.dart';
+import 'package:weather_app/controller/db_controller/news_controller.dart';
+import 'package:weather_app/controller/savepage_controller/save_provider.dart';
 import 'package:weather_app/views/save_article/save_article_page.dart';
 
 class SaveArticle extends StatefulWidget {
@@ -32,7 +32,7 @@ class _SaveArticleState extends State<SaveArticle> {
       body: CustomScrollView(
         slivers: [
           const SliverAppBar.large(
-            backgroundColor: Colors.transparent,
+            backgroundColor: Colors.grey,
             title: Text(
               "Saved",
               style: TextStyle(
@@ -154,7 +154,7 @@ class _SaveArticleState extends State<SaveArticle> {
                                                     ),
                                                     overflow:
                                                         TextOverflow.ellipsis,
-                                                    maxLines: 3,
+                                                    maxLines: 2,
                                                   ),
                                                 ),
                                                 Row(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:weather_app/controller/provider_controller/save_provider.dart';
+import 'package:weather_app/controller/savepage_controller/save_provider.dart';
 
 class SaveAritclePage extends StatelessWidget {
   const SaveAritclePage(
@@ -25,9 +25,9 @@ class SaveAritclePage extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           //appbar
-          SliverAppBar(
-            backgroundColor: Colors.grey.shade300,
-            title: const Text(
+          const SliverAppBar(
+            backgroundColor: Colors.grey,
+            title: Text(
               'Article',
               style: TextStyle(
                 color: Colors.black,

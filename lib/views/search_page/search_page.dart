@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:weather_app/controller/provider_controller/search_page.dart';
-import 'package:weather_app/views/widgets/news_tile.dart';
+import 'package:weather_app/controller/savepage_controller/searchapage_controller/search_page.dart';
+import 'package:weather_app/views/homepage/widgets/news_tile.dart';
 
 class Searchpage extends StatefulWidget {
   const Searchpage({super.key});

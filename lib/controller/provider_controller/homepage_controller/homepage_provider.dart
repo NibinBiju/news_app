@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_typing_uninitialized_variables, avoid_print
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -27,10 +28,15 @@ class HomePageProvider with ChangeNotifier {
 
     print(response.statusCode);
     print(response.body);
-    print(model?.articles?[indexvalue].urlToImage);
-    jsonData = jsonDecode(response.body);
 
-    model = NewsModel.fromJson(jsonData);
+    if (response.statusCode == 200) {
+      jsonData = jsonDecode(response.body);
+      model = NewsModel.fromJson(jsonData);
+    } else if (response.statusCode == 429) {
+      const ScaffoldMessenger(
+        child: Text('Something went wrong !'),
+      );
+    }
 
     isLoad = false;
     notifyListeners();

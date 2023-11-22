@@ -14,12 +14,11 @@ class LatestContainerSlider extends StatelessWidget {
       padding: const EdgeInsets.all(4.0),
       child: Container(
         padding: const EdgeInsets.only(top: 90, left: 5, right: 5),
-        width: 350,
-        height: 350,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(23),
           image: DecorationImage(
-              image: NetworkImage(model?.articles?[index].urlToImage ?? ""),
+              image: NetworkImage(model?.articles?[index].urlToImage ??
+                  "https://img.freepik.com/premium-vector/news-pattern-consisting-microphone-tv-radio-newspaper-phone-speaker-planet_505620-315.jpg"),
               fit: BoxFit.cover),
         ),
         child: Column(
@@ -46,7 +45,7 @@ class LatestContainerSlider extends StatelessWidget {
               children: [
                 SizedBox(
                   width: 240,
-                  height: 140,
+                  height: 130,
                   child: Text(
                     model?.articles?[index].title ?? "N/a",
                     style: const TextStyle(

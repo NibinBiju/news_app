@@ -1,6 +1,6 @@
 import 'package:hive/hive.dart';
 
-import 'package:weather_app/controller/news_controller.dart';
+import 'package:weather_app/controller/db_controller/news_controller.dart';
 import 'package:weather_app/model/database_model.dart';
 
 class DbHive {

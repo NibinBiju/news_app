@@ -1,4 +1,4 @@
-import 'package:weather_app/controller/hive_controller.dart';
+import 'package:weather_app/controller/db_controller/hive_controller.dart';
 import 'package:weather_app/model/database_model.dart';
 
 class NewsDbController {

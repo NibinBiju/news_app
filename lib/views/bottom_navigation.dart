@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:weather_app/controller/provider_controller/bottomnavi_controller.dart';
-import 'package:weather_app/views/home_page.dart';
+import 'package:weather_app/controller/provider_controller/bottomNaviController/bottomnavi_controller.dart';
+import 'package:weather_app/views/homepage/home_page.dart';
 import 'package:weather_app/views/save_article/save_article.dart';
 
 class BottomNavigationPage extends StatelessWidget {

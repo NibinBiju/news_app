@@ -2,7 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:weather_app/controller/provider_controller/homepage_provider.dart';
+import 'package:weather_app/controller/provider_controller/homepage_controller/homepage_provider.dart';
+import 'package:weather_app/views/about_us/about_us.dart';
+import 'package:weather_app/views/homepage/widgets/shimmer_widget/shimmer_containers.dart';
 import 'package:weather_app/views/news_main_body/news_main_body.dart';
 import 'package:weather_app/views/search_page/search_page.dart';
 
@@ -38,6 +40,103 @@ class _HomepageState extends State<Homepage> {
   Widget build(BuildContext context) {
     var homeProvider = Provider.of<HomePageProvider>(context);
     return Scaffold(
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(13),
+              decoration: const BoxDecoration(
+                color: Color.fromARGB(160, 0, 0, 0),
+                borderRadius: BorderRadius.only(
+                  bottomRight: Radius.circular(22),
+                ),
+              ),
+              child: const DrawerHeader(
+                child: Text(
+                  'Menu',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 28,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            ),
+            ListTile(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return AboutUsPage();
+                }));
+              },
+              title: const Text(
+                'About us',
+                style: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 24,
+                ),
+              ),
+              trailing: IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.more,
+                  color: Colors.grey,
+                ),
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.only(left: 20, right: 20),
+              child: Divider(
+                color: Colors.grey,
+              ),
+            ),
+            ListTile(
+              title: const Text(
+                "Privacy & Policy's",
+                style: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 24,
+                ),
+              ),
+              trailing: IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.more_horiz,
+                  color: Colors.grey,
+                ),
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.only(left: 20, right: 20),
+              child: Divider(
+                color: Colors.grey,
+              ),
+            ),
+            ListTile(
+              title: const Text(
+                'How to use',
+                style: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 24,
+                ),
+              ),
+              trailing: IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.info,
+                  color: Colors.grey,
+                ),
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.only(left: 20, right: 20),
+              child: Divider(
+                color: Colors.grey,
+              ),
+            ),
+          ],
+        ),
+      ),
       body: RefreshIndicator(
         onRefresh: () {
           return homeProvider.fetchData(tapbarlist[homeProvider.indexvalue]);
@@ -46,6 +145,20 @@ class _HomepageState extends State<Homepage> {
           slivers: [
             //appbar
             SliverAppBar.medium(
+              leading: Builder(
+                builder: (BuildContext context) {
+                  return IconButton(
+                    onPressed: () => Scaffold.of(context).openDrawer(),
+                    icon: Icon(
+                      Icons.menu,
+                      size: 32,
+                      color: Colors.grey.shade800,
+                    ),
+                    tooltip:
+                        MaterialLocalizations.of(context).openAppDrawerTooltip,
+                  );
+                },
+              ),
               titleTextStyle: const TextStyle(
                 fontWeight: FontWeight.w600,
                 color: Colors.black,
@@ -53,9 +166,9 @@ class _HomepageState extends State<Homepage> {
               ),
               stretch: true,
               centerTitle: true,
-              backgroundColor: Colors.grey.shade100,
+              backgroundColor: Colors.grey,
               elevation: 0,
-              title: const Text("News"),
+              title: const Text("N News"),
               actions: [
                 IconButton(
                   onPressed: () {},
@@ -103,8 +216,10 @@ class _HomepageState extends State<Homepage> {
                                           onTap: () {
                                             homeProvider.appbarIndex(
                                                 index: index);
-                                            homeProvider.fetchData(tapbarlist[
-                                                homeProvider.indexvalue]);
+                                            homeProvider.fetchData(
+                                              tapbarlist[
+                                                  homeProvider.indexvalue],
+                                            );
                                           },
                                           child: ClipRRect(
                                             borderRadius:
@@ -142,9 +257,9 @@ class _HomepageState extends State<Homepage> {
                         homeProvider.isLoad
                             ? const SizedBox(
                                 width: double.infinity,
-                                height: 300,
-                                child:
-                                    Center(child: CircularProgressIndicator()),
+                                child: Center(
+                                  child: ShimmerWidget(),
+                                ),
                               )
                             : NewsMainBody(
                                 model: homeProvider.model,

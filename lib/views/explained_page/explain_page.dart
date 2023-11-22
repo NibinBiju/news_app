@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:weather_app/controller/news_controller.dart';
-import 'package:weather_app/controller/provider_controller/save_provider.dart';
+import 'package:weather_app/controller/db_controller/news_controller.dart';
+import 'package:weather_app/controller/savepage_controller/save_provider.dart';
 import 'package:weather_app/model/database_model.dart';
 import 'package:weather_app/model/news_api_model.dart';
 

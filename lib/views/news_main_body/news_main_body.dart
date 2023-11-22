@@ -3,8 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:weather_app/model/news_api_model.dart';
 import 'package:weather_app/views/explained_page/explain_page.dart';
-import 'package:weather_app/views/widgets/news_tile.dart';
-import 'package:weather_app/views/widgets/slider_container.dart';
+import 'package:weather_app/views/homepage/widgets/news_tile.dart';
+import 'package:weather_app/views/homepage/widgets/slider_container.dart';
 
 class NewsMainBody extends StatelessWidget {
   const NewsMainBody(
@@ -34,20 +34,6 @@ class NewsMainBody extends StatelessWidget {
                   color: Colors.black,
                 ),
               ),
-
-              //see all
-              CupertinoButton(
-                  child: const Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text("See All"),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Icon(Icons.arrow_forward),
-                    ],
-                  ),
-                  onPressed: () {})
             ],
           ),
         ),

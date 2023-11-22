@@ -3,10 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
-import 'package:weather_app/controller/provider_controller/bottomnavi_controller.dart';
-import 'package:weather_app/controller/provider_controller/homepage_provider.dart';
-import 'package:weather_app/controller/provider_controller/save_provider.dart';
-import 'package:weather_app/controller/provider_controller/search_page.dart';
+import 'package:weather_app/controller/provider_controller/bottomNaviController/bottomnavi_controller.dart';
+import 'package:weather_app/controller/provider_controller/homepage_controller/homepage_provider.dart';
+import 'package:weather_app/controller/savepage_controller/save_provider.dart';
+import 'package:weather_app/controller/savepage_controller/searchapage_controller/search_page.dart';
 import 'package:weather_app/model/database_model.dart';
 import 'package:weather_app/views/bottom_navigation.dart';
 
