@@ -29,8 +29,9 @@ class _SplashScreenState extends State<SplashScreen> {
             Container(
               width: 80,
               height: 80,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                image: const DecorationImage(
                   image: AssetImage('assets/images/play_store_512.png'),
                   fit: BoxFit.cover,
                 ),

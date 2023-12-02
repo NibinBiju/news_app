@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
@@ -101,15 +102,32 @@ class _SaveArticleState extends State<SaveArticle> {
                                                 width: 140,
                                                 height: 140,
                                                 decoration: BoxDecoration(
-                                                  image: DecorationImage(
-                                                    image: NetworkImage(
-                                                        NewsDbController
-                                                                .savedArticles[
-                                                                    index]
-                                                                .image ??
-                                                            ""),
-                                                    fit: BoxFit.cover,
+                                                    // image: DecorationImage(
+                                                    //   image: NetworkImage(
+                                                    //       NewsDbController
+                                                    //               .savedArticles[
+                                                    //                   index]
+                                                    //               .image ??
+                                                    //           ""),
+                                                    //   fit: BoxFit.cover,
+                                                    // ),
+                                                    ),
+                                                child: CachedNetworkImage(
+                                                  progressIndicatorBuilder:
+                                                      (context, url,
+                                                              downloadProgress) =>
+                                                          Center(
+                                                    child:
+                                                        CircularProgressIndicator(
+                                                            value:
+                                                                downloadProgress
+                                                                    .progress),
                                                   ),
+                                                  imageUrl: NewsDbController
+                                                          .savedArticles[index]
+                                                          .image ??
+                                                      '',
+                                                  fit: BoxFit.cover,
                                                 ),
                                               ),
                                             ),

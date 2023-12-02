@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app/controller/db_controller/news_controller.dart';
@@ -112,15 +113,18 @@ class DetailsPage extends StatelessWidget {
                       textAlign: TextAlign.start,
                     ),
                   ),
-                  Container(
-                    width: 374,
-                    height: 200,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(22),
-                      image: DecorationImage(
-                        image: NetworkImage(
-                            model?.articles?[index].urlToImage ?? ""),
-                        fit: BoxFit.cover,
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: Container(
+                      width: 374,
+                      height: 200,
+                      child: CachedNetworkImage(
+                        imageUrl: model?.articles?[index].urlToImage ?? '',
+                        progressIndicatorBuilder:
+                            (context, url, downloadProgress) => Center(
+                          child: CircularProgressIndicator(
+                              value: downloadProgress.progress),
+                        ),
                       ),
                     ),
                   ),

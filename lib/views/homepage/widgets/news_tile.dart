@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app/controller/db_controller/news_controller.dart';
@@ -41,12 +42,13 @@ class NewsTile extends StatelessWidget {
                   child: Container(
                     width: 140,
                     height: 140,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: NetworkImage(model
-                                ?.articles?[index].urlToImage ??
-                            "https://img.freepik.com/premium-vector/news-pattern-consisting-microphone-tv-radio-newspaper-phone-speaker-planet_505620-315.jpg"),
-                        fit: BoxFit.cover,
+                    decoration: const BoxDecoration(),
+                    child: CachedNetworkImage(
+                      imageUrl: model?.articles?[index].urlToImage ?? '',
+                      fit: BoxFit.cover,
+                      progressIndicatorBuilder:
+                          (context, url, downloadProgress) => const Center(
+                        child: CircularProgressIndicator(),
                       ),
                     ),
                   ),

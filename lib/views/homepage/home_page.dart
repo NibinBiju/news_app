@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_typing_uninitialized_variables, avoid_print
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app/controller/provider_controller/homepage_controller/homepage_provider.dart';
+import 'package:weather_app/controller/utils/constant_utils.dart';
 import 'package:weather_app/views/about_us/about_us.dart';
 import 'package:weather_app/views/homepage/widgets/shimmer_widget/shimmer_containers.dart';
 import 'package:weather_app/views/news_main_body/news_main_body.dart';
@@ -93,7 +93,7 @@ class _HomepageState extends State<Homepage> {
             ListTile(
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return const PrivacyDetailsPage();
+                  return PrivacyDetailsPage();
                 }));
               },
               title: const Text(
@@ -117,28 +117,6 @@ class _HomepageState extends State<Homepage> {
                 color: Colors.grey,
               ),
             ),
-            ListTile(
-              title: const Text(
-                'How to use',
-                style: TextStyle(
-                  color: Color.fromARGB(255, 100, 100, 100),
-                  fontSize: 24,
-                ),
-              ),
-              trailing: IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.info,
-                  color: Color.fromARGB(255, 100, 100, 100),
-                ),
-              ),
-            ),
-            const Padding(
-              padding: EdgeInsets.only(left: 20, right: 20),
-              child: Divider(
-                color: Colors.grey,
-              ),
-            ),
           ],
         ),
       ),
@@ -149,6 +127,7 @@ class _HomepageState extends State<Homepage> {
         child: CustomScrollView(
           slivers: [
             //appbar
+
             SliverAppBar.medium(
               leading: Builder(
                 builder: (BuildContext context) {
@@ -171,7 +150,7 @@ class _HomepageState extends State<Homepage> {
               ),
               stretch: true,
               centerTitle: true,
-              backgroundColor: Colors.grey,
+              backgroundColor: newsAppbarColor,
               elevation: 0,
               title: const Text("News Express"),
               actions: [

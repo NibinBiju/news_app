@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app/controller/provider_controller/bottomNaviController/bottomnavi_controller.dart';
 import 'package:weather_app/views/homepage/home_page.dart';
+import 'package:weather_app/views/latest_news_/latest_new.dart';
 import 'package:weather_app/views/save_article/save_article.dart';
 
 class BottomNavigationPage extends StatelessWidget {
@@ -9,6 +10,7 @@ class BottomNavigationPage extends StatelessWidget {
 
   final List mypages = [
     const Homepage(),
+    const LatestNews(),
     const SaveArticle(),
   ];
 
@@ -28,6 +30,7 @@ class BottomNavigationPage extends StatelessWidget {
         },
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: ""),
+          BottomNavigationBarItem(icon: Icon(Icons.newspaper), label: ""),
           BottomNavigationBarItem(icon: Icon(Icons.bookmark), label: ""),
         ],
       ),
