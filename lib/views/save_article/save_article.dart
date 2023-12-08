@@ -65,6 +65,7 @@ class _SaveArticleState extends State<SaveArticle> {
                                   (index) {
                                     return GestureDetector(
                                       onTap: () {
+                                        //navigate to savearticle details page
                                         Navigator.push(context,
                                             MaterialPageRoute(
                                                 builder: (context) {
@@ -76,9 +77,9 @@ class _SaveArticleState extends State<SaveArticle> {
                                                   "",
                                               sourse: NewsDbController
                                                   .savedArticles[index].source,
-                                              description: NewsDbController
+                                              url: NewsDbController
                                                   .savedArticles[index]
-                                                  .decription,
+                                                  .url,
                                               image: NewsDbController
                                                       .savedArticles[index]
                                                       .image ??
@@ -101,17 +102,6 @@ class _SaveArticleState extends State<SaveArticle> {
                                               child: Container(
                                                 width: 140,
                                                 height: 140,
-                                                decoration: BoxDecoration(
-                                                    // image: DecorationImage(
-                                                    //   image: NetworkImage(
-                                                    //       NewsDbController
-                                                    //               .savedArticles[
-                                                    //                   index]
-                                                    //               .image ??
-                                                    //           ""),
-                                                    //   fit: BoxFit.cover,
-                                                    // ),
-                                                    ),
                                                 child: CachedNetworkImage(
                                                   progressIndicatorBuilder:
                                                       (context, url,

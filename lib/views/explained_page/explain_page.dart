@@ -6,13 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:weather_app/controller/db_controller/news_controller.dart';
-import 'package:weather_app/controller/provider_controller/bottomNaviController/bottomnavi_controller.dart';
 import 'package:weather_app/controller/savepage_controller/save_provider.dart';
 import 'package:weather_app/model/database_model.dart';
 import 'package:weather_app/model/news_api_model.dart';
 
 class DetailsPage extends StatefulWidget {
-  DetailsPage({super.key, required this.model, required this.index});
+  const DetailsPage({super.key, required this.model, required this.index});
   final NewsModel? model;
   final int index;
 
@@ -26,7 +25,7 @@ class _DetailsPageState extends State<DetailsPage> {
   @override
   Widget build(BuildContext context) {
     var saveProvider = Provider.of<SaveProvider>(context);
-    var bottomNaviProvider = Provider.of<BottomNavi>(context);
+
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -93,10 +92,10 @@ class _DetailsPageState extends State<DetailsPage> {
                                               .source
                                               ?.name ??
                                           "",
-                                      decription: widget
+                                      url: widget
                                               .model
                                               ?.articles?[widget.index]
-                                              .description ??
+                                              .url ??
                                           "",
                                       content: widget
                                               .model
@@ -185,8 +184,6 @@ class _DetailsPageState extends State<DetailsPage> {
                             _launchUrl(Uri.parse(
                                 widget.model?.articles?[widget.index].url ??
                                     ''));
-                            print(widget.model?.articles?[widget.index].url ??
-                                '');
                           },
                         ),
                       )

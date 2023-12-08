@@ -20,7 +20,7 @@ class DatabaseModelAdapter extends TypeAdapter<DatabaseModel> {
       image: fields[0] as String?,
       title: fields[1] as String?,
       source: fields[2] as String,
-      decription: fields[3] as String,
+      url: fields[3] as String,
       content: fields[4] as String,
     );
   }
@@ -36,7 +36,7 @@ class DatabaseModelAdapter extends TypeAdapter<DatabaseModel> {
       ..writeByte(2)
       ..write(obj.source)
       ..writeByte(3)
-      ..write(obj.decription)
+      ..write(obj.url)
       ..writeByte(4)
       ..write(obj.content);
   }

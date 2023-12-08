@@ -13,7 +13,7 @@ class DatabaseModel {
   String source;
 
   @HiveField(3)
-  String decription;
+  String url;
 
   @HiveField(4)
   String content;
@@ -22,7 +22,7 @@ class DatabaseModel {
     this.image,
     this.title,
     required this.source,
-    required this.decription,
+    required this.url,
     required this.content,
   });
 }
