@@ -117,8 +117,6 @@ class NewsTile extends StatelessWidget {
                                       source: model
                                               ?.articles?[index].source?.name ??
                                           "",
-                                      // author:
-                                      //     model?.articles?[index].author ?? "",
                                       decription:
                                           model?.articles?[index].description ??
                                               "",
